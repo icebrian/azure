@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "envPrefixName": {
-      "value": "i2s1"
+      "value": "dep02"
     },
     "location": {
       "value": "West Europe"
@@ -25,6 +25,15 @@
     },
     "storageAccountType": {
       "value": "Premium_LRS"
+    },
+    "address": {
+      "value": "10.99.1.0/16"
+    },
+    "feSubnet": {
+      "value": "10.99.1.0/24"
+    },
+    "dbSubnet": {
+      "value": "10.99.2.0/24"
     }
   }
 }
