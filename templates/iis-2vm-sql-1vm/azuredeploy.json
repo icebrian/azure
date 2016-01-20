@@ -163,6 +163,7 @@
     "configurationFunction": "WebServerConfig.ps1\\WebServerConfig"
   },
   "resources": [
+      # Network Security Group / Firewall Rules
     {
       "apiVersion": "[variables('apiVersion')]", 
       "type": "Microsoft.Network/networkSecurityGroups",
@@ -313,6 +314,7 @@
         ]
       }
     },
+      # Storage Account
     {
       "name": "[variables('storageName')]",
       "type": "Microsoft.Storage/storageAccounts",
@@ -367,6 +369,7 @@
         ]
       }
     },
+      # Virtual Machine - SQL Server
     {
       "name": "[concat(parameters('envPrefixName'), 'sqlSrv14')]",
       "type": "Microsoft.Compute/virtualMachines",
@@ -415,6 +418,7 @@
         }
       }
     },
+      # Availability Sets
     {
       "type": "Microsoft.Compute/availabilitySets",
       "name": "[variables('webSrvAvailabilitySetName')]",
@@ -425,6 +429,7 @@
       },
       "properties": { }
     },
+      # Public IP Address
     {
       "name": "[variables('webSrvPublicIP')]",
       "type": "Microsoft.Network/publicIPAddresses",
@@ -441,6 +446,7 @@
         }
       }
     },
+      # Load Balancer
     {
       "apiVersion": "[variables('apiVersion')]",
       "name": "[variables('webLbName')]",
@@ -528,6 +534,7 @@
         ]
       }
     },
+      # Network Interface Cards
     {
       "name": "[concat(variables('webSrvNicName'), copyindex())]",
       "type": "Microsoft.Network/networkInterfaces",
@@ -569,6 +576,7 @@
         ]
       }
     },
+      # Virtual Machine - Windows Server(s)
     {
       "name": "[concat(variables('webSrvName'), copyindex())]",
       "type": "Microsoft.Compute/virtualMachines",
@@ -623,6 +631,7 @@
         }
       }
     },
+      # Extensions - PowerShell DSC - Windows Features for IIS
     {
       "type": "Microsoft.Compute/virtualMachines/extensions",
       "name": "[concat(variables('webSrvName'), copyindex(),'/', variables('vmExtensionName'))]",
