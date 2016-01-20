@@ -1,7 +1,7 @@
 # IIS VMs and SQL VM
 
 ## Disclaimer
-This is a personal template based on templates provided at https://github.com/Azure/azure-quickstart-templates. These are for personal test use-cases and should not be used by anyone else.
+<b>This is a personal template based on templates provided at https://github.com/Azure/azure-quickstart-templates. These are for personal test use-cases and should not be used by anyone else!</b>
 
 ## Deploy
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Ficebrian%2Fazure%2Fmaster%2Ftemplates%2Fiis-2vm-sql-1vm%2Fazuredeploy.parameters.json" target="_blank">
