@@ -16,7 +16,7 @@ $hour = (Get-Date).Hour
 $minute = (Get-Date).Minute
 $seconds = (Get-Date).Second
 
-$rgName = "cm-classic"
+$rgName = "cm-arm"
 $location = "East US"
 
 #Write-Host "Resource Group Name: $name"

@@ -12,13 +12,13 @@
       "value": "Iscebria001"
     },
     "dnsLabelPrefix": {
-      "value": "w2k12r2-cmcl02"
+      "value": "NEWVMtest01"
     },
     "location": {
       "value": "West Europe"
     },
     "vmSize": {
-      "value": "Standard_D1v2"
+      "value": "Standard_D2"
     },
     "puppet_master_server_url": {
       "value": "puppet-arm01.cloudapp.net"
