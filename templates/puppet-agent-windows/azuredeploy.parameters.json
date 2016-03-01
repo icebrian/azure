@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "storageAccountNamePrefix": {
-      "value": "cmclassicstor"
+      "value": "cmarmstor"
     },
     "adminUserName": {
       "value": "superuser"
@@ -15,13 +15,13 @@
       "value": "w2k12r2-cmcl02"
     },
     "location": {
-      "value": "East US"
+      "value": "West Europe"
     },
     "vmSize": {
       "value": "Standard_D1v2"
     },
     "puppet_master_server_url": {
-      "value": "puppet-classic01.cloudapp.net"
+      "value": "puppet-arm01.cloudapp.net"
     }
   }
 }
