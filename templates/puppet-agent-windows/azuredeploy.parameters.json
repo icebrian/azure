@@ -1,0 +1,27 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "storageAccountNamePrefix": {
+      "value": "GEN-UNIQUE-11"
+    },
+    "adminUserName": {
+      "value": "superuser"
+    },
+    "adminPassword": {
+      "value": "Iscebria001"
+    },
+    "dnsLabelPrefix": {
+      "value": "GEN-UNIQUE-13"
+    },
+    "location": {
+      "value": "East US"
+    },
+    "vmSize": {
+      "value": "Standard_D1v2"
+    },
+    "puppet_master_server_url": {
+      "value": "puppet-classic01.cloudapp.net"
+    }
+  }
+}
