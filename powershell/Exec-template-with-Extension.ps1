@@ -21,8 +21,10 @@ $location = "East US"
 
 #Write-Host "Resource Group Name: $name"
 
-#Login-AzureRmAccount
+Login-AzureRmAccount
 
 #New-AzureRmResourceGroup -Name $rgName -Location $location
 
 New-AzureRmResourceGroupDeployment -Name $rgName -ResourceGroupName $rgName -TemplateUri https://raw.githubusercontent.com/icebrian/azure/master/templates/puppet-agent-windows/azuredeploy.json -TemplateParameterUri https://raw.githubusercontent.com/icebrian/azure/master/templates/puppet-agent-windows/azuredeploy.parameters.json -Verbose
+
+New-AzureRmResourceGroupDeployment -Name "cm-arm" -ResourceGroupName "cm-arm" -TemplateUri https://raw.githubusercontent.com/icebrian/azure/master/templates/puppet-agent-windows/azuredeploy.json -TemplateParameterUri https://raw.githubusercontent.com/icebrian/azure/master/templates/puppet-agent-windows/azuredeploy.parameters.json -Verbose

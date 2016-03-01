@@ -54,7 +54,7 @@
     "vmExtensionName": "PuppetEnterpriseAgent",
     "vmName": "[parameters('dnsLabelPrefix')]",
     "storageAccountType": "Standard_LRS",
-    "publicIPAddressName": "[concat(parameters('dnsLabelPrefix'), '-PubIP')]",
+    "publicIPAddressName": "[concat(parameters('dnsLabelPrefix'), 'PubIP')]",
     "publicIPAddressType": "Dynamic",
     "vmStorageAccountContainerName": "vhds",
     "virtualNetworkName": "[concat(parameters('dnsLabelPrefix'), '-VNET')]",
