@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "storageAccountNamePrefix": {
-      "value": "NEWVMstor"
+      "value": "newtestvmstor"
     },
     "adminUserName": {
       "value": "superuser"
@@ -12,7 +12,7 @@
       "value": "Iscebria001"
     },
     "dnsLabelPrefix": {
-      "value": "NEWVMtest01"
+      "value": "newtestvm01"
     },
     "location": {
       "value": "West Europe"
