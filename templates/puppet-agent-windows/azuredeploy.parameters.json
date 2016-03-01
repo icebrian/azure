@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "storageAccountNamePrefix": {
-      "value": "GEN-UNIQUE-11"
+      "value": "cmclassicstor"
     },
     "adminUserName": {
       "value": "superuser"
@@ -12,7 +12,7 @@
       "value": "Iscebria001"
     },
     "dnsLabelPrefix": {
-      "value": "GEN-UNIQUE-13"
+      "value": "w2k12r2-cmcl02"
     },
     "location": {
       "value": "East US"
