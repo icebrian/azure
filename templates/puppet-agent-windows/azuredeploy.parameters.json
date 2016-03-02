@@ -21,7 +21,7 @@
       "value": "Standard_D2"
     },
     "puppet_master_server_url": {
-      "value": "puppet-arm01.westeurope.cloudapp.azure.com"
+      "value": "puppet-cl372.cloudapp.net"
     }
   }
 }
