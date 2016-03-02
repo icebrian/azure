@@ -15,7 +15,7 @@ azure vm extension list-image-types --location "West Europe" --publisher "Micros
 azure vm extension get --resource-group "cm-arm" --vm-name "w2k12r2-cmarm01"
 
 # Set/Add Puppet Agent extension to VM
-azure vm extension set --resource-group "cm-arm" --vm-name "w2k12r2-cmarm01" --name "PuppetEnterpriseAgent" --publisher-name "PuppetLabs"
+azure vm extension set --resource-group "cm-arm" --vm-name "w2k12r2-cmarm01" --name "PuppetEnterpriseAgent" --publisher-name "PuppetLabs" --version "3.8.4"
 
 
 
