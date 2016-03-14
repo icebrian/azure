@@ -3,22 +3,22 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "dnsName": {
-      "value": "changeme"
+      "value": "icdrdns1"
     },
     "storageAccountName": {
-      "value": "changeme"
+      "value": "icdrsa1"
     },
     "adminUsername": {
-      "value": "azureuser"
+      "value": "superuser"
     },
     "adminPassword": {
-      "value": "changeme"
+      "value": "Iscebria001"
     },
     "location": {
-      "value": "West US"
+      "value": "West Europe"
     },
     "virtualNetworkName": {
-      "value": "myvnet"
+      "value": "icdrvnet1"
     },
     "vmSize": {
       "value": "Standard_A1"

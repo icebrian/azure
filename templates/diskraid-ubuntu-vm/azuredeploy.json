@@ -87,7 +87,7 @@
     "vmStorageAccountContainerName": "vhd",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',parameters('virtualNetworkName'))]",
     "subnet1Ref": "[concat(variables('vnetID'),'/subnets/',parameters('subnet1Name'))]",
-    "scriptUrl": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/shared_scripts/ubuntu/vm-disk-utils-0.1.sh",
+    "scriptUrl": "https://raw.githubusercontent.com/icebrian/azure/master/templates/diskraid-ubuntu-vm/post-boot1.sh",
     "securityGroupName": "diskraidnsg"
   },
   "resources": [
