@@ -126,7 +126,7 @@ fi
 # START
 if [ "$#" -eq 0 ]; then
   log "Script requires inputs such as datadisk1.sh mountpoint1-size mountpoint2-size ..."
-  exit;
+  exit 2
 else
   MOUNT_POINTS=( "$@" )
   DISKS=($(scan_for_new_disks))
@@ -137,7 +137,7 @@ fi
 if [ "${#DISKS}" -eq 0 ];
 then
     log "No unpartitioned disks without filesystems detected"
-    return
+    exit 2
 fi
 
 for DISK in "${DISKS[@]}";
