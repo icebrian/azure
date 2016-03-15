@@ -3,7 +3,7 @@
 # Version: 0.1
 # Url: https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/shared_scripts/ubuntu/vm-disk-utils-0.1.sh
 #
-# Horribly Modified By: Istvan Cebrian
+# Modified By: Istvan Cebrian
 # Date: 15/03/2016
 # Version: 0.1
 #
@@ -123,7 +123,9 @@ fi
 }
 #end do_partition
 
-# START
+####################################### START
+
+
 if [ "$#" -eq 0 ]; then
   log "Script requires inputs such as datadisk1.sh mountpoint1-size mountpoint2-size ..."
   exit 2
@@ -132,12 +134,11 @@ else
   DISKS=($(scan_for_new_disks))
 fi
 
-######
 
 if [ "${#DISKS}" -eq 0 ];
 then
     log "No unpartitioned disks without filesystems detected"
-    exit 2
+    exit 1
 fi
 
 for DISK in "${DISKS[@]}";
@@ -154,9 +155,7 @@ do
         if [ "${DISK_SIZE}" -eq "${MOUNT_SIZE}" ];
         then
             echo "Will mount disk ${DISK} with size ${DISK_SIZE}Gb in mount point /${MOUNT_DIR} for size ${MOUNT_SIZE}Gb"
-            echo ""
 
-#####
             is_partitioned ${DISK}
             if [ ${?} -ne 0 ];
             then
@@ -177,8 +176,6 @@ do
             add_to_fstab "${UUID}" "/${MOUNT_DIR}"
             echo "Mounting disk ${PARTITION} on /${MOUNT_DIR}"
             mount "/${MOUNT_DIR}"
-######
-
         fi
     done
 
