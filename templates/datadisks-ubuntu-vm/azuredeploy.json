@@ -122,7 +122,7 @@
     "vmStorageAccountContainerName": "vhd",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',parameters('virtualNetworkName'))]",
     "subnet1Ref": "[concat(variables('vnetID'),'/subnets/',parameters('subnet1Name'))]",
-    "scriptUrl": "https://raw.githubusercontent.com/icebrian/azure/master/templates/diskraid-ubuntu-vm/vm-disk-utils-0.1.sh",
+    "scriptUrl": "https://github.com/icebrian/azure/blob/master/templates/datadisks-ubuntu-vm/datadisks.sh",
     "securityGroupName": "diskraidnsg",
     "dataDisk1Size": "[parameters('dataDiskSize1')]",
     "dataDisk1Mount": "[parameters('dataDiskMount1')]",
@@ -319,7 +319,7 @@
               "fileUris": [
                 "[variables('scriptUrl')]"
               ],
-              "commandToExecute": "bash vm-disk-utils-0.1.sh"
+              "commandToExecute": "[concat('echo \"datadisks.sh ',parameters('dataDisk1Mount'),'-',parameters('dataDisk2Size'),' ',parameters('dataDisk2Mount'),'-',parameters('dataDisk2Size'),' ',parameters('dataDisk3Mount'),'-',parameters('dataDisk3Size'),'\" > /CMD.txt')]"
             }
           }
         }
