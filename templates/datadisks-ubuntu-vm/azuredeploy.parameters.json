@@ -22,6 +22,24 @@
     },
     "vmSize": {
       "value": "Standard_A1"
+    },
+    "dataDisk1Size": {
+      "value": 5
+    },
+    "dataDisk1Mount": {
+      "value": "geodata"
+    },
+    "dataDisk2Size": {
+      "value": 15
+    },
+    "dataDisk2Mount": {
+      "value": "psqldata"
+    },
+    "dataDisk3Size": {
+      "value": 30
+    },
+    "dataDisk3Mount": {
+      "value": "psqlogs"
     }
   }
 }

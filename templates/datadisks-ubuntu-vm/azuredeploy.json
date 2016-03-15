@@ -75,20 +75,61 @@
         "description": "Load balancer subdomain name: for example (<subdomain>.westus.cloudapp.azure.com)"
       }
     },
-    "dataDiskSize": {
+    "dataDiskSize1": {
       "type": "int",
       "defaultValue": 20,
       "metadata": {
-        "description": "Size of each data disk attached to data nodes in (Gb)"
+        "description": "Size of data disk 1 (Gb)"
       }
-    }
+    },
+    "dataDiskMount1": {
+      "type": "string",
+      "defaultValue": "/datadisk1",
+      "metadata": {
+        "description": "Mount point of data disk 1"
+      }
+    },
+    "dataDiskSize2": {
+      "type": "int",
+      "defaultValue": 20,
+      "metadata": {
+        "description": "Size of data disk 2 (Gb)"
+      }
+    },
+    "dataDiskMount2": {
+      "type": "string",
+      "defaultValue": "/datadisk2",
+      "metadata": {
+        "description": "Mount point of data disk 2"
+      }
+    },
+    "dataDiskSize3": {
+      "type": "int",
+      "defaultValue": 20,
+      "metadata": {
+        "description": "Size of data disk 3 (Gb)"
+      }
+    },
+    "dataDiskMount3": {
+      "type": "string",
+      "defaultValue": "/datadisk3",
+      "metadata": {
+        "description": "Mount point of data disk 3"
+      }
+    },
   },
   "variables": {
     "vmStorageAccountContainerName": "vhd",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',parameters('virtualNetworkName'))]",
     "subnet1Ref": "[concat(variables('vnetID'),'/subnets/',parameters('subnet1Name'))]",
     "scriptUrl": "https://raw.githubusercontent.com/icebrian/azure/master/templates/diskraid-ubuntu-vm/vm-disk-utils-0.1.sh",
-    "securityGroupName": "diskraidnsg"
+    "securityGroupName": "diskraidnsg",
+    "dataDisk1Size": "[parameters('dataDiskSize1')]",
+    "dataDisk1Mount": "[parameters('dataDiskMount1')]",
+    "dataDisk2Size": "[parameters('dataDiskSize2')]",
+    "dataDisk2Mount": "[parameters('dataDiskMount2')]",
+    "dataDisk3Size": "[parameters('dataDiskSize3')]",
+    "dataDisk3Mount": "[parameters('dataDiskMount3')]"
   },
   "resources": [
     {
@@ -233,10 +274,20 @@
             },
             {
               "name": "datadisk2",
-              "diskSizeGB": "[parameters('dataDiskSize')]",
+              "diskSizeGB": "[parameters('dataDiskSize2')]",
               "lun": 1,
               "vhd": {
                 "Uri": "[concat('http://',parameters('storageAccountName'),'.blob.core.windows.net/vhds/','myvm' ,'dataDisk2','.vhd')]"
+              },
+              "caching": "None",
+              "createOption": "Empty"
+            },
+            {
+              "name": "datadisk3",
+              "diskSizeGB": "[parameters('dataDiskSize3')]",
+              "lun": 2,
+              "vhd": {
+                "Uri": "[concat('http://',parameters('storageAccountName'),'.blob.core.windows.net/vhds/','myvm' ,'dataDisk3','.vhd')]"
               },
               "caching": "None",
               "createOption": "Empty"
