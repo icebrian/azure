@@ -84,7 +84,7 @@
     },
     "dataDiskMount1": {
       "type": "string",
-      "defaultValue": "/datadisk1",
+      "defaultValue": "datadisk1",
       "metadata": {
         "description": "Mount point of data disk 1"
       }
@@ -98,7 +98,7 @@
     },
     "dataDiskMount2": {
       "type": "string",
-      "defaultValue": "/datadisk2",
+      "defaultValue": "datadisk2",
       "metadata": {
         "description": "Mount point of data disk 2"
       }
@@ -112,7 +112,7 @@
     },
     "dataDiskMount3": {
       "type": "string",
-      "defaultValue": "/datadisk3",
+      "defaultValue": "datadisk3",
       "metadata": {
         "description": "Mount point of data disk 3"
       }
