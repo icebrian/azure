@@ -1,0 +1,7 @@
+{
+  "itemDisplayName": "Create Ubuntu vm with three data disks",
+  "description": "This template creates a virtual machine with multiple data disks attached. A script partitions and mounts disks in specified mount points based on size.",
+  "summary": "Create Ubuntu vm with multiple data disks on specified mount points",
+  "githubUsername": "icebrian",
+  "dateUpdated": "2015-10-01"
+}
