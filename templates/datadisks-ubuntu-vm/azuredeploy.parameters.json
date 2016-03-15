@@ -21,7 +21,7 @@
       "value": "icdrvnet4"
     },
     "vmSize": {
-      "value": "Standard_A1"
+      "value": "Standard_A2"
     },
     "dataDiskSize1": {
       "value": 5
