@@ -16,7 +16,7 @@ $seconds = (Get-Date).Second
 $rgName = "diskraid_$year$month$day-$hour$minute$seconds"
 $location = "West Europe"
 
-#Login-AzureRmAccount
+Login-AzureRmAccount
 
 New-AzureRmResourceGroup -Name $rgName -Location $location
 
