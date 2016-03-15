@@ -129,7 +129,8 @@
     "dataDisk2Size": "[parameters('dataDiskSize2')]",
     "dataDisk2Mount": "[parameters('dataDiskMount2')]",
     "dataDisk3Size": "[parameters('dataDiskSize3')]",
-    "dataDisk3Mount": "[parameters('dataDiskMount3')]"
+    "dataDisk3Mount": "[parameters('dataDiskMount3')]",
+    "exec": "echo HELLO > /tmp/CMD.txt"
   },
   "resources": [
     {
@@ -319,7 +320,7 @@
               "fileUris": [
                 "[variables('scriptUrl')]"
               ],
-              "commandToExecute": "[concat('echo \"datadisks.sh ',parameters('dataDiskMount1'),'-',parameters('dataDiskSize1'),' ',parameters('dataDiskMount2'),'-',parameters('dataDiskSize2'),' ',parameters('dataDiskMount3'),'-',parameters('dataDiskSize3'),'\" > /tmp/CMD.txt')]"
+              "commandToExecute": "[variables('exec')]"
             }
           }
         }
