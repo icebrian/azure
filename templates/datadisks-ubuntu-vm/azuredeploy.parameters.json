@@ -3,10 +3,10 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "dnsName": {
-      "value": "icdrdns5"
+      "value": "icdrdns6"
     },
     "storageAccountName": {
-      "value": "icdrsa5"
+      "value": "icdrsa6"
     },
     "adminUsername": {
       "value": "superuser"
@@ -18,7 +18,7 @@
       "value": "West Europe"
     },
     "virtualNetworkName": {
-      "value": "icdrvnet5"
+      "value": "icdrvnet6"
     },
     "vmSize": {
       "value": "Standard_A2"
