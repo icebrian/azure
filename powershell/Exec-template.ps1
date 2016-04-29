@@ -25,4 +25,4 @@ $location = "West Europe"
 
 New-AzureRmResourceGroup -Name $rgName -Location $location
 
-New-AzureRmResourceGroupDeployment -Name $rgName -ResourceGroupName $rgName -TemplateUri https://raw.githubusercontent.com/icebrian/azure/master/templates/iis-2vm-sql-1vm/azuredeploy.json -TemplateParameterUri https://raw.githubusercontent.com/icebrian/azure/master/templates/iis-2vm-sql-1vm/azuredeploy.parameters.json -Verbose
+New-AzureRmResourceGroupDeployment -Name $rgName -ResourceGroupName $rgName -TemplateUri https://raw.githubusercontent.com/icebrian/azure/master/templates/vm-multiple-data-disk-and-chef/azuredeploy.json -TemplateParameterUri https://raw.githubusercontent.com/icebrian/azure/master/templates/vm-multiple-data-disk-and-chef/azuredeploy.parameters.json -Verbose

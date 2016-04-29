@@ -3,19 +3,19 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "adminUsername": {
-      "value": "azureUser"
+      "value": "superuser"
     },
     "adminPassword": {
-      "value": "GEN-PASSWORD"
+      "value": "Iscebria001"
     },
     "dnsLabelPrefix": {
-      "value": "GEN-UNIQUE"
+      "value": "lbl1"
     },
     "vmSize": {
-      "value": "Standard_D2"
+      "value": "Standard_D1"
     },
     "sizeOfEachDataDiskInGB": {
-      "value": "100"
+      "value": "10"
     }
   }
 }
