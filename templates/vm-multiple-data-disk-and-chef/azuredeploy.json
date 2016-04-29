@@ -230,7 +230,7 @@
                     "typeHandlerVersion": "2.9",
                     "autoUpgradeMinorVersion": true,
                   "settings": {
-                    "modulesUrl": "https://raw.githubusercontent.com/icebrian/azure/blob/master/templates/vm-multiple-data-disk-and-chef/Server.zip",
+                    "modulesUrl": "https://raw.githubusercontent.com/icebrian/azure/master/templates/vm-multiple-data-disk-and-chef/Server.zip",
                     "configurationFunction": "Server.ps1\\Server",
                     "properties": {
                       "nodeName": "[variables('vmName')]"
