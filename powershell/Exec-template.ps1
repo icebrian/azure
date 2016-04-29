@@ -13,7 +13,7 @@ $hour = (Get-Date).Hour
 $minute = (Get-Date).Minute
 $seconds = (Get-Date).Second
 
-$rgName = "xdskwin_$year$month$day-$hour$minute$seconds"
+$rgName = "chefwin_$year$month$day-$hour$minute$seconds"
 $location = "West Europe"
 
 #Write-Host "Resource Group Name: $name"
