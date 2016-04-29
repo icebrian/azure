@@ -230,7 +230,7 @@
             "typeHandlerVersion": "2.9",
             "autoUpgradeMinorVersion": true,
             "settings": {
-              "modulesUrl": "https://raw.githubusercontent.com/G1la0/azuretemplates/master/DSC/DataDisk.ps1.zip",
+              "modulesUrl": "https://raw.githubusercontent.com/icebrian/azure/blob/master/templates/vm-multiple-data-disk-and-chef/Server.zip",
               "configurationFunction": "DataDisk.ps1\\Main",
               "properties": {
                 "nodeName": "variables('vmName')"
