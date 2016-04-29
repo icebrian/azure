@@ -1,4 +1,4 @@
-﻿######################################################################################
+######################################################################################
 # Script: 2iis-1sql
 # Description: Uses Template file to create 2 Web Server VM's and 1 SQL VM
 # for further information, please refer to:
@@ -16,7 +16,7 @@ $hour = (Get-Date).Hour
 $minute = (Get-Date).Minute
 $seconds = (Get-Date).Second
 
-$rgName = "iis2-sql1_$year$month$day-$hour$minute$seconds"
+$rgName = "win-xdsk-chef_$year$month$day-$hour$minute$seconds"
 $location = "West Europe"
 
 #Write-Host "Resource Group Name: $name"
