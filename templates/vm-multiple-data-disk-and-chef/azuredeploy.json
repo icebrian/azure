@@ -211,7 +211,35 @@
             "storageUri": "[concat('http://',variables('storageAccountName'),'.blob.core.windows.net')]"
           }
         }
-      }
+      },
+      "resources": [
+        {
+          "name": "DiskExtension",
+          "type": "extensions",
+          "location": "[resourceGroup().location]",
+          "apiVersion": "2015-06-15",
+          "dependsOn": [
+            "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), padLeft(copyIndex(1),2,'0'))]"
+          ],
+          "tags": {
+            "displayName": "DiskExtension"
+          },
+          "properties": {
+            "publisher": "Microsoft.Powershell",
+            "type": "DSC",
+            "typeHandlerVersion": "2.9",
+            "autoUpgradeMinorVersion": true,
+            "settings": {
+              "modulesUrl": "https://raw.githubusercontent.com/G1la0/azuretemplates/master/DSC/DataDisk.ps1.zip",
+              "configurationFunction": "DataDisk.ps1\\Main",
+              "properties": {
+                "nodeName": "variables('vmName')"
+              }
+            },
+            "protectedSettings": { }
+          }
+        }
+      ]
     }
   ]
 }
