@@ -56,7 +56,6 @@
     "dataDisk3VhdName": "[concat('http://',variables('storageAccountName'),'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',variables('vmName'),'dataDisk3.vhd')]",
     "dataDisk4VhdName": "[concat('http://',variables('storageAccountName'),'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',variables('vmName'),'dataDisk4.vhd')]",
     "apiVersion": "2015-06-15",
-      "MountDisksConfigurationFunction": "MountDisksConfiguration.ps1\\Main"
   },
   "resources": [
     {
@@ -212,7 +211,35 @@
             "storageUri": "[concat('http://',variables('storageAccountName'),'.blob.core.windows.net')]"
           }
         }
-      }
+      },
+        "resources": [
+            {
+                "name": "MountDisks",
+                "type": "extensions",
+                "location": "[resourceGroup().location]",
+                "apiVersion": "2015-06-15",
+                "dependsOn": [
+                    "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
+                ],
+                "tags": {
+                    "displayName": "MountDisks"
+                },
+                "properties": {
+                    "publisher": "Microsoft.Powershell",
+                    "type": "DSC",
+                    "typeHandlerVersion": "2.9",
+                    "autoUpgradeMinorVersion": true,
+                  "settings": {
+                    "modulesUrl": "https://raw.githubusercontent.com/icebrian/azure/blob/master/templates/vm-multiple-data-disk-and-chef/Server.zip",
+                    "configurationFunction": "Server.ps1\\Server",
+                    "properties": {
+                      "nodeName": "[variables('vmName')]"
+                    }
+                  },
+                    "protectedSettings": { }
+                }
+            }
+        ]
     }
   ]
 }
