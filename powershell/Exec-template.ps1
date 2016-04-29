@@ -19,6 +19,8 @@ $location = "West Europe"
 #Write-Host "Resource Group Name: $name"
 
 #Login-AzureRmAccount
+#Get-AzureRmSubscription
+#Select-AzureRmSubscription -SubscriptionId fb8f8229-3cbd-4811-843c-ce7344396f8a
 
 New-AzureRmResourceGroup -Name $rgName -Location $location
 
