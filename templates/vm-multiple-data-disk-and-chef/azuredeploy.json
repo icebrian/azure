@@ -252,6 +252,7 @@
           }
         }
       },
+<<<<<<< HEAD
       "resources": [
         {
           "name": "MountDisks",
@@ -306,6 +307,36 @@
           "validation_key": "[parameters('validation_key')]"
         }
       }
+=======
+        "resources": [
+            {
+                "name": "MountDisks",
+                "type": "extensions",
+                "location": "[resourceGroup().location]",
+                "apiVersion": "2015-06-15",
+                "dependsOn": [
+                    "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
+                ],
+                "tags": {
+                    "displayName": "MountDisks"
+                },
+                "properties": {
+                    "publisher": "Microsoft.Powershell",
+                    "type": "DSC",
+                    "typeHandlerVersion": "2.9",
+                    "autoUpgradeMinorVersion": true,
+                  "settings": {
+                    "modulesUrl": "https://raw.githubusercontent.com/icebrian/azure/master/templates/vm-multiple-data-disk-and-chef/Server.zip",
+                    "configurationFunction": "Server.ps1\\Server",
+                    "properties": {
+                      "nodeName": "[variables('vmName')]"
+                    }
+                  },
+                    "protectedSettings": { }
+                }
+            }
+        ]
+>>>>>>> origin/master
     }
 
   ]
