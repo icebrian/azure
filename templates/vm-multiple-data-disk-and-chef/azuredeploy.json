@@ -31,45 +31,6 @@
       "metadata": {
         "description": "Size of each data disk in GB"
       }
-    },
-    "chef_node_name": {
-      "type": "string",
-      "metadata": {
-        "description": "The name for the node (VM) in the Chef Organization"
-      }
-    },
-    "chef_server_url": {
-      "type": "string",
-      "metadata": {
-        "description": "Organization URL for the Chef Server. Example https://ChefServerDnsName.cloudapp.net/organizations/Orgname"
-      }
-    },
-    "validation_client_name": {
-      "type": "string",
-      "metadata": {
-        "description": "Validator key name for the organization. Example : MyOrg-validator"
-      }
-    },
-    "runlist": {
-      "type": "string",
-      "defaultValue": "recipe[getting-started]",
-      "metadata": {
-        "description": "Optional Run List to Execute"
-      }
-    },
-    "validation_key": {
-      "type": "string",
-      "metadata": {
-        "description": "JSON Escaped Validation Key"
-      }
-    },
-    "validation_key_format": {
-      "type": "string",
-      "allowedValues": [ "plaintext", "base64encoded" ],
-      "defaultValue": "plaintext",
-      "metadata": {
-        "description": "Format in which Validation Key is given. e.g. plaintext, base64encoded"
-      }
     }
 
   },
