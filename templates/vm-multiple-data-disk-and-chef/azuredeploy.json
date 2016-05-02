@@ -31,7 +31,47 @@
       "metadata": {
         "description": "Size of each data disk in GB"
       }
+    },
+    "chef_node_name": {
+      "type": "string",
+      "metadata": {
+        "description": "The name for the node (VM) in the Chef Organization"
+      }
+    },
+    "chef_server_url": {
+      "type": "string",
+      "metadata": {
+        "description": "Organization URL for the Chef Server. Example https://ChefServerDnsName.cloudapp.net/organizations/Orgname"
+      }
+    },
+    "validation_client_name": {
+      "type": "string",
+      "metadata": {
+        "description": "Validator key name for the organization. Example : MyOrg-validator"
+      }
+    },
+    "runlist": {
+      "type": "string",
+      "defaultValue": "recipe[getting-started]",
+      "metadata": {
+        "description": "Optional Run List to Execute"
+      }
+    },
+    "validation_key": {
+      "type": "string",
+      "metadata": {
+        "description": "JSON Escaped Validation Key"
+      }
+    },
+    "validation_key_format": {
+      "type": "string",
+      "allowedValues": [ "plaintext", "base64encoded" ],
+      "defaultValue": "plaintext",
+      "metadata": {
+        "description": "Format in which Validation Key is given. e.g. plaintext, base64encoded"
+      }
     }
+
   },
   "variables": {
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'saddiskvm')]",
@@ -212,34 +252,61 @@
           }
         }
       },
-        "resources": [
-            {
-                "name": "MountDisks",
-                "type": "extensions",
-                "location": "[resourceGroup().location]",
-                "apiVersion": "2015-06-15",
-                "dependsOn": [
-                    "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
-                ],
-                "tags": {
-                    "displayName": "MountDisks"
-                },
-                "properties": {
-                    "publisher": "Microsoft.Powershell",
-                    "type": "DSC",
-                    "typeHandlerVersion": "2.9",
-                    "autoUpgradeMinorVersion": true,
-                  "settings": {
-                    "modulesUrl": "https://raw.githubusercontent.com/icebrian/azure/blob/master/templates/vm-multiple-data-disk-and-chef/Server.zip",
-                    "configurationFunction": "Server.ps1\\Server",
-                    "properties": {
-                      "nodeName": "[variables('vmName')]"
-                    }
-                  },
-                    "protectedSettings": { }
-                }
-            }
-        ]
+      "resources": [
+        {
+          "name": "MountDisks",
+          "type": "extensions",
+          "location": "[resourceGroup().location]",
+          "apiVersion": "2015-06-15",
+          "dependsOn": [
+            "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
+          ],
+          "tags": {
+            "displayName": "MountDisks"
+          },
+          "properties": {
+            "publisher": "Microsoft.Powershell",
+            "type": "DSC",
+            "typeHandlerVersion": "2.9",
+            "autoUpgradeMinorVersion": true,
+            "settings": {
+              "modulesUrl": "https://raw.githubusercontent.com/icebrian/azure/master/templates/vm-multiple-data-disk-and-chef/DataDisk.ps1.zip",
+              "configurationFunction": "DataDisk.ps1\\Server",
+              "properties": {
+                "nodeName": "[variables('vmName')]"
+              }
+            },
+            "protectedSettings": { }
+          }
+        }
+      ]
+    },
+    {
+      "type": "Microsoft.Compute/virtualMachines/extensions",
+      "name": "[concat(variables('vmName'),'/', variables('vmName'))]",
+      "apiVersion": "2015-06-15",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
+      ],
+      "properties": {
+        "publisher": "Chef.Bootstrap.WindowsAzure",
+        "type": "ChefClient",
+        "typeHandlerVersion": "1210.12",
+        "settings": {
+          "bootstrap_options": {
+            "chef_node_name": "[parameters('chef_node_name')]",
+            "chef_server_url": "[parameters('chef_server_url')]",
+            "validation_client_name": "[parameters('validation_client_name')]"
+          },
+          "runlist": "[parameters('runlist')]",
+          "validation_key_format": "[parameters('validation_key_format')]"
+        },
+        "protectedSettings": {
+          "validation_key": "[parameters('validation_key')]"
+        }
+      }
     }
+
   ]
 }
