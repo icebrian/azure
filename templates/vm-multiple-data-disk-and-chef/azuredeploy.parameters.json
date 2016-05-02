@@ -16,21 +16,6 @@
     },
     "sizeOfEachDataDiskInGB": {
       "value": "10"
-    },
-    "chef_node_name": {
-      "value": "myVM"
-    },
-    "chef_server_url": {
-      "value": "Organization URL for the Chef Server. Example https://ChefServerDnsName.cloudapp.net/organizations/Orgname"
-    },
-    "validation_client_name": {
-      "value": "Validator key name for the organization. Example : MyOrg-validator"
-    },
-    "runlist": {
-      "value": "recipe[getting-started]"
-    },
-    "validation_key": {
-      "value": "JSON Escaped Validation Key"
     }
   }
 }

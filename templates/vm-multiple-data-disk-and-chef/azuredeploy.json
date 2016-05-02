@@ -252,7 +252,6 @@
           }
         }
       },
-<<<<<<< HEAD
       "resources": [
         {
           "name": "MountDisks",
@@ -281,63 +280,6 @@
           }
         }
       ]
-    },
-    {
-      "type": "Microsoft.Compute/virtualMachines/extensions",
-      "name": "[concat(variables('vmName'),'/', variables('vmName'))]",
-      "apiVersion": "2015-06-15",
-      "location": "[resourceGroup().location]",
-      "dependsOn": [
-        "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
-      ],
-      "properties": {
-        "publisher": "Chef.Bootstrap.WindowsAzure",
-        "type": "ChefClient",
-        "typeHandlerVersion": "1210.12",
-        "settings": {
-          "bootstrap_options": {
-            "chef_node_name": "[parameters('chef_node_name')]",
-            "chef_server_url": "[parameters('chef_server_url')]",
-            "validation_client_name": "[parameters('validation_client_name')]"
-          },
-          "runlist": "[parameters('runlist')]",
-          "validation_key_format": "[parameters('validation_key_format')]"
-        },
-        "protectedSettings": {
-          "validation_key": "[parameters('validation_key')]"
-        }
-      }
-=======
-        "resources": [
-            {
-                "name": "MountDisks",
-                "type": "extensions",
-                "location": "[resourceGroup().location]",
-                "apiVersion": "2015-06-15",
-                "dependsOn": [
-                    "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
-                ],
-                "tags": {
-                    "displayName": "MountDisks"
-                },
-                "properties": {
-                    "publisher": "Microsoft.Powershell",
-                    "type": "DSC",
-                    "typeHandlerVersion": "2.9",
-                    "autoUpgradeMinorVersion": true,
-                  "settings": {
-                    "modulesUrl": "https://raw.githubusercontent.com/icebrian/azure/master/templates/vm-multiple-data-disk-and-chef/Server.zip",
-                    "configurationFunction": "Server.ps1\\Server",
-                    "properties": {
-                      "nodeName": "[variables('vmName')]"
-                    }
-                  },
-                    "protectedSettings": { }
-                }
-            }
-        ]
->>>>>>> origin/master
     }
-
   ]
 }
