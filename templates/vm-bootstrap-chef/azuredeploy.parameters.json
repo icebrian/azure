@@ -3,10 +3,10 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "adminUsername": {
-      "value": "superuser"
+      "value": "adminuser"
     },
     "adminPassword": {
-      "value": "Iscebria001"
+      "value": "Password001"
     },
     "dnsLabelPrefix": {
       "value": "chef-prefix2"
