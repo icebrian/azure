@@ -7,12 +7,12 @@ Configuration Server
         {
             xWaitforDisk Disk
             {
-                DiskNumber = 0
+                DiskNumber = 1
             }
 
             xDisk Volume
             {
-                DiskNumber = 0
+                DiskNumber = 1
                 DriveLetter = 'F'
                 DependsOn = '[xWaitforDisk]Disk'
             }
