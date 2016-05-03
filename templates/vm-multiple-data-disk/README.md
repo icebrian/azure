@@ -5,3 +5,5 @@
 </a>
 
 This template allows you to create a Windows Virtual Machine from a specified image during the template deployment. It also attaches empty data disks and mounts them (by initializing and formating) on specified paths.
+
+Note: Uses https://github.com/PowerShell/xStorage
