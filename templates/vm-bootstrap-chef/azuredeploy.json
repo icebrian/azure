@@ -26,12 +26,6 @@
         "description": "Size of VM"
       }
     },
-    "sizeOfEachDataDiskInGB": {
-      "type": "string",
-      "metadata": {
-        "description": "Size of each data disk in GB"
-      }
-    },
     "chef_node_name": {
       "type": "string",
       "metadata": {
