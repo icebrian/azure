@@ -44,7 +44,7 @@
     "imageOffer": "WindowsServer",
     "imageSKU": "2012-Datacenter",
     "imageVersion": "latest",
-    "publicIPAddressName": "myPublicIP2",
+    "publicIPAddressName": "myPublicIP3",
     "publicIPAddressType": "Dynamic",
     "storageAccountType": "Standard_LRS",
     "virtualNetworkName": "myVNET",
