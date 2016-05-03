@@ -24,7 +24,7 @@
       "value": "GEN-UNIQUE"
     },
     "runlist": {
-      "value": "recipe[getting-started]"
+      "value": "role[webserver],recipe[getting-started]"
     },
     "autoUpdateClient": {
       "value": "false"

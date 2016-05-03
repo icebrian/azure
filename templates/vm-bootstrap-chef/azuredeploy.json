@@ -82,6 +82,7 @@
     "addressPrefix": "10.0.0.0/16",
     "subnet1Name": "Subnet-1",
     "subnet1Prefix": "10.0.0.0/24",
+    "vmExtensionName": "ChefExtension",
     "vmStorageAccountContainerName": "vhds",
     "imagePublisher": "MicrosoftWindowsServer",
     "imageOffer": "WindowsServer",
