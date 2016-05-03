@@ -234,7 +234,6 @@
               "modulesUrl": "https://raw.githubusercontent.com/icebrian/azure/master/templates/vm-multiple-data-disk-and-chef/DataDisk.ps1.zip",
               "configurationFunction": "DataDisk.ps1\\Server",
               "properties": {
-                "nodeName": "[variables('vmName')]"
               }
             },
             "protectedSettings": { }
