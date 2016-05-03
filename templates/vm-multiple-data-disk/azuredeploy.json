@@ -44,7 +44,7 @@
     "imageOffer": "WindowsServer",
     "imageSKU": "2012-R2-Datacenter",
     "imageVersion": "latest",
-    "publicIPAddressName": "myDDPubIP1",
+    "publicIPAddressName": "myDDPubIP2",
     "publicIPAddressType": "Dynamic",
     "storageAccountType": "Standard_LRS",
     "virtualNetworkName": "myVNET",
@@ -159,6 +159,33 @@
               "lun": 0,
               "vhd": {
                 "Uri": "[variables('dataDisk1VhdName')]"
+              },
+              "createOption": "Empty"
+            },
+            {
+              "name": "datadisk2",
+              "diskSizeGB": "[parameters('sizeOfEachDataDiskInGB')]",
+              "lun": 1,
+              "vhd": {
+                "Uri": "[variables('dataDisk2VhdName')]"
+              },
+              "createOption": "Empty"
+            },
+            {
+              "name": "datadisk3",
+              "diskSizeGB": "[parameters('sizeOfEachDataDiskInGB')]",
+              "lun": 2,
+              "vhd": {
+                "Uri": "[variables('dataDisk3VhdName')]"
+              },
+              "createOption": "Empty"
+            },
+            {
+              "name": "datadisk4",
+              "diskSizeGB": "[parameters('sizeOfEachDataDiskInGB')]",
+              "lun": 3,
+              "vhd": {
+                "Uri": "[variables('dataDisk4VhdName')]"
               },
               "createOption": "Empty"
             }
