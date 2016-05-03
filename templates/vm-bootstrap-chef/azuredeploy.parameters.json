@@ -9,13 +9,13 @@
       "value": "Iscebria001"
     },
     "dnsLabelPrefix": {
-      "value": "chef-prefix1"
+      "value": "chef-prefix2"
     },
     "vmSize": {
       "value": "Standard_D2"
     },
     "chef_node_name": {
-      "value": "myDeployedVM"
+      "value": "myDeployedVM2"
     },
     "chef_server_url": {
       "value": "https://chef-classic01.cloudapp.net/organizations/microsoft"
@@ -24,7 +24,7 @@
       "value": "microsoft-validator"
     },
     "runlist": {
-      "value": "role[global]"
+      "value": "role[windows]"
     },
     "autoUpdateClient": {
       "value": "false"

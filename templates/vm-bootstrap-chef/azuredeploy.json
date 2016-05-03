@@ -88,7 +88,7 @@
     "imageOffer": "WindowsServer",
     "imageSKU": "2012-R2-Datacenter",
     "imageVersion": "latest",
-    "publicIPAddressName": "myPublicIP3",
+    "publicIPAddressName": "myPublicIP2",
     "publicIPAddressType": "Dynamic",
     "storageAccountType": "Standard_LRS",
     "virtualNetworkName": "myVNET",
@@ -233,7 +233,7 @@
         "type": "ChefClient",
         "typeHandlerVersion": "1210.12",
         "settings": {
-          "client_rb": "ssl_verify_mode :verify_none\n",
+          "client_rb": "ssl_verify_mode :verify_none\nenvironment 'production'",
           "bootstrap_options": {
             "chef_node_name": "[parameters('chef_node_name')]",
             "chef_server_url": "[parameters('chef_server_url')]",
