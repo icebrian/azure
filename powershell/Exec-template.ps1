@@ -13,7 +13,7 @@ $hour = (Get-Date).Hour
 $minute = (Get-Date).Minute
 $seconds = (Get-Date).Second
 
-$rgName = "windatadisk_$year$month$day-$hour$minute$seconds"
+$rgName = "winddsk_$year$month$day-$hour$minute$seconds"
 $location = "West Europe"
 
 #Write-Host "Resource Group Name: $name"
@@ -24,4 +24,4 @@ $location = "West Europe"
 
 New-AzureRmResourceGroup -Name $rgName -Location $location
 
-New-AzureRmResourceGroupDeployment -Name $rgName -ResourceGroupName $rgName -TemplateUri https://raw.githubusercontent.com/icebrian/azure/master/templates/vm-multiple-data-disk-and-chef/azuredeploy.json -TemplateParameterUri https://raw.githubusercontent.com/icebrian/azure/master/templates/vm-multiple-data-disk-and-chef/azuredeploy.parameters.json -Verbose
+New-AzureRmResourceGroupDeployment -Name $rgName -ResourceGroupName $rgName -TemplateUri https://raw.githubusercontent.com/icebrian/azure/master/templates/vm-multiple-data-disk/azuredeploy.json -TemplateParameterUri https://raw.githubusercontent.com/icebrian/azure/master/templates/vm-multiple-data-disk/azuredeploy.parameters.json -Verbose

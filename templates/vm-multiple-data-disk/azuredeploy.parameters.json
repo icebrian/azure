@@ -9,7 +9,7 @@
       "value": "Iscebria001"
     },
     "dnsLabelPrefix": {
-      "value": "dd-prefix0"
+      "value": "dd-prefix1"
     },
     "vmSize": {
       "value": "Standard_D2"
