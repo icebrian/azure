@@ -15,22 +15,22 @@
       "value": "Standard_D2"
     },
     "chef_node_name": {
-      "value": "GEN-UNIQUE"
+      "value": "myDeployedVM"
     },
     "chef_server_url": {
-      "value": "GEN-UNIQUE"
+      "value": "https://chef-classic01.cloudapp.net/organizations/microsoft"
     },
     "validation_client_name": {
-      "value": "GEN-UNIQUE"
+      "value": "microsoft-validator"
     },
     "runlist": {
-      "value": "role[webserver],recipe[getting-started]"
+      "value": "role[global]"
     },
     "autoUpdateClient": {
       "value": "false"
     },
     "validation_key": {
-      "value": "GEN-UNIQUE"
+      "value": "microsoft-validator.pem"
     },
     "validation_key_format": {
       "value": "plaintext"

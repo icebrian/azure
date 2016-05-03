@@ -46,9 +46,9 @@
     },
     "runlist": {
       "type": "string",
-      "defaultValue": "recipe[getting-started]",
+      "defaultValue": "role[global]",
       "metadata": {
-        "description": "Optional Run List to Execute"
+        "description": "role[global],recipe[getting-started]"
       }
     },
     "autoUpdateClient": {
