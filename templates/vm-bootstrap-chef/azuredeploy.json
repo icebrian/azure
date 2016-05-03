@@ -31,8 +31,57 @@
       "metadata": {
         "description": "Size of each data disk in GB"
       }
+    },
+    "chef_node_name": {
+      "type": "string",
+      "metadata": {
+        "description": "The name for the node (VM) in the Chef Organization"
+      }
+    },
+    "chef_server_url": {
+      "type": "string",
+      "metadata": {
+        "description": "Organization URL for the Chef Server. Example https://ChefServerDnsName.cloudapp.net/organizations/Orgname"
+      }
+    },
+    "validation_client_name": {
+      "type": "string",
+      "metadata": {
+        "description": "Validator key name for the organization. Example : MyOrg-validator"
+      }
+    },
+    "runlist": {
+      "type": "string",
+      "defaultValue": "recipe[getting-started]",
+      "metadata": {
+        "description": "Optional Run List to Execute"
+      }
+    },
+    "autoUpdateClient": {
+      "type": "string",
+      "defaultValue": "false",
+      "allowedValues": [
+        "true",
+        "false"
+      ],
+      "metadata": {
+        "description": "Optional Flag for auto update"
+      }
+    },
+    "validation_key": {
+      "type": "string",
+      "metadata": {
+        "description": "JSON Escaped Validation Key"
+      }
+    },
+    "validation_key_format": {
+      "type": "string",
+      "allowedValues": ["plaintext", "base64encoded"],
+      "defaultValue": "plaintext",
+      "metadata" : {
+        "description": "Format in which Validation Key is given. e.g. plaintext, base64encoded"
+      }
     }
-
   },
   "variables": {
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'saddiskvm')]",
@@ -152,44 +201,6 @@
             "sku": "[variables('imageSKU')]",
             "version": "[variables('imageVersion')]"
           },
-          "dataDisks": [
-            {
-              "name": "datadisk1",
-              "diskSizeGB": "[parameters('sizeOfEachDataDiskInGB')]",
-              "lun": 0,
-              "vhd": {
-                "Uri": "[variables('dataDisk1VhdName')]"
-              },
-              "createOption": "Empty"
-            },
-            {
-              "name": "datadisk2",
-              "diskSizeGB": "[parameters('sizeOfEachDataDiskInGB')]",
-              "lun": 1,
-              "vhd": {
-                "Uri": "[variables('dataDisk2VhdName')]"
-              },
-              "createOption": "Empty"
-            },
-            {
-              "name": "datadisk3",
-              "diskSizeGB": "[parameters('sizeOfEachDataDiskInGB')]",
-              "lun": 2,
-              "vhd": {
-                "Uri": "[variables('dataDisk3VhdName')]"
-              },
-              "createOption": "Empty"
-            },
-            {
-              "name": "datadisk4",
-              "diskSizeGB": "[parameters('sizeOfEachDataDiskInGB')]",
-              "lun": 3,
-              "vhd": {
-                "Uri": "[variables('dataDisk4VhdName')]"
-              },
-              "createOption": "Empty"
-            }
-          ],
           "osDisk": {
             "name": "osdisk1",
             "vhd": {
@@ -212,34 +223,33 @@
             "storageUri": "[concat('http://',variables('storageAccountName'),'.blob.core.windows.net')]"
           }
         }
-      },
-      "resources": [
-        {
-          "name": "MountDisks",
-          "type": "extensions",
-          "location": "[resourceGroup().location]",
-          "apiVersion": "2015-06-15",
-          "dependsOn": [
-            "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
-          ],
-          "tags": {
-            "displayName": "MountDisks"
+      }
+    },
+    {
+      "type": "Microsoft.Compute/virtualMachines/extensions",
+      "name": "[concat(variables('vmName'),'/', variables('vmExtensionName'))]",
+      "apiVersion": "2015-05-01-preview",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
+      ],
+      "properties": {
+        "publisher": "Chef.Bootstrap.WindowsAzure",
+        "type": "ChefClient",
+        "typeHandlerVersion": "1210.12",
+        "settings": {
+          "bootstrap_options": {
+            "chef_node_name": "[parameters('chef_node_name')]",
+            "chef_server_url": "[parameters('chef_server_url')]",
+            "validation_client_name": "[parameters('validation_client_name')]"
           },
-          "properties": {
-            "publisher": "Microsoft.Powershell",
-            "type": "DSC",
-            "typeHandlerVersion": "2.9",
-            "autoUpgradeMinorVersion": true,
-            "settings": {
-              "modulesUrl": "https://raw.githubusercontent.com/icebrian/azure/master/templates/vm-multiple-data-disk-and-chef/DataDisk.ps1.zip",
-              "configurationFunction": "DataDisk.ps1\\Server",
-              "properties": {
-              }
-            },
-            "protectedSettings": { }
-          }
+          "runlist": "[parameters('runlist')]",
+          "validation_key_format": "[parameters('validation_key_format')]"
+        },
+        "protectedSettings": {
+          "validation_key": "[parameters('validation_key')]"
         }
-      ]
+      }
     }
   ]
 }
