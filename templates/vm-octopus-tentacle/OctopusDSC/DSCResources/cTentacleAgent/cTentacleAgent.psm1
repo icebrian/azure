@@ -264,6 +264,9 @@ function New-Tentacle
 
     Write-Verbose "Beginning Tentacle installation"
 
+    $tentacleDownloadUrl = "http://octopusdeploy.com/downloads/latest/OctopusTentacle"
+    $tentacleDownloadUrl64 = "http://octopusdeploy.com/downloads/latest/OctopusTentacle64"
+
     $actualTentacleDownloadUrl = $tentacleDownloadUrl64
     if ([IntPtr]::Size -eq 4)
     {
