@@ -1,6 +1,5 @@
 Configuration DataDisk
 {
-       Import-DscResource -ModuleName PSDesiredStateConfiguration
        Import-DSCResource -ModuleName xStorage
 
         Node localhost
