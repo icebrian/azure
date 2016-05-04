@@ -59,6 +59,7 @@
     }
   },
   "variables": {
+    "apiVersion": "2015-06-15",
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'saddiskvm')]",
     "addressPrefix": "10.0.0.0/16",
     "subnet1Name": "Subnet-1",
