@@ -18,7 +18,7 @@
       "value": "myDeployedVM2"
     },
     "chef_server_url": {
-      "value": "https://chef-classic01.cloudapp.net/organizations/microsoft"
+      "value": "https://mychef.cloudapp.net/organizations/microsoft"
     },
     "validation_client_name": {
       "value": "microsoft-validator"
