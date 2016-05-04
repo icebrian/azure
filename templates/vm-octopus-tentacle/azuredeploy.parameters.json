@@ -14,9 +14,6 @@
     "vmSize": {
       "value": "Standard_D2"
     },
-    "sizeOfEachDataDiskInGB": {
-      "value": "10"
-    },
     "OctopusApiKey": {
       "value": "API-ABCDEF12345678910"
     },
