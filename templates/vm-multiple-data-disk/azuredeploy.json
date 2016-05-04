@@ -161,6 +161,33 @@
                 "Uri": "[variables('dataDisk1VhdName')]"
               },
               "createOption": "Empty"
+            },
+            {
+              "name": "datadisk2",
+              "diskSizeGB": "[parameters('sizeOfEachDataDiskInGB')]",
+              "lun": 1,
+              "vhd": {
+                "Uri": "[variables('dataDisk2VhdName')]"
+              },
+              "createOption": "Empty"
+            },
+            {
+              "name": "datadisk3",
+              "diskSizeGB": "[parameters('sizeOfEachDataDiskInGB')]",
+              "lun": 2,
+              "vhd": {
+                "Uri": "[variables('dataDisk3VhdName')]"
+              },
+              "createOption": "Empty"
+            },
+            {
+              "name": "datadisk4",
+              "diskSizeGB": "[parameters('sizeOfEachDataDiskInGB')]",
+              "lun": 3,
+              "vhd": {
+                "Uri": "[variables('dataDisk4VhdName')]"
+              },
+              "createOption": "Empty"
             }
           ],
           "osDisk": {
@@ -204,7 +231,7 @@
             "typeHandlerVersion": "2.9",
             "autoUpgradeMinorVersion": true,
             "settings": {
-              "modulesUrl": "https://raw.githubusercontent.com/icebrian/azure/master/templates/vm-multiple-data-disk/DataDisk.ps1.zip",
+              "modulesUrl": "https://raw.githubusercontent.com/icebrian/azure/master/templates/vm-multiple-data-disk/xStorage.ps1.zip",
               "configurationFunction": "DataDisk.ps1\\DataDisk",
               "properties": {
               }
