@@ -5,17 +5,10 @@ Configuration DataDisk
 
         Node localhost
         {
-            xWaitforDisk Disk
-            {
-                DiskNumber = 1
-            }
-
             xDisk DataVolume
             {
                 DiskNumber = 1
                 DriveLetter = 'F'
-                DependsOn = '[xWaitforDisk]Disk'
             }
-
         }
 }
