@@ -8,7 +8,7 @@ function Get-TargetResource
     param
     (
         [parameter(Mandatory)]
-        [uint32] $DiskNumber,        
+        [uint32] $DiskNumber,
 
         [UInt64]$RetryIntervalSec = 10,
 
@@ -28,7 +28,7 @@ function Set-TargetResource
     param
     (
         [parameter(Mandatory)]
-        [uint32] $DiskNumber,        
+        [uint32] $DiskNumber,
 
         [UInt64]$RetryIntervalSec = 10,
 
@@ -67,7 +67,7 @@ function Test-TargetResource
     param
     (
         [parameter(Mandatory)]
-        [uint32] $DiskNumber,        
+        [uint32] $DiskNumber,
 
         [UInt64]$RetryIntervalSec = 10,
 

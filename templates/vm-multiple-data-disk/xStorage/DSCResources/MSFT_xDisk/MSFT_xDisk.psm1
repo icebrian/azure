@@ -1,4 +1,4 @@
-﻿#
+#
 # xComputer: DSC resource to initialize, partition, and format disks.
 #
 
@@ -19,14 +19,18 @@ function Get-TargetResource
     )
 
     $Disk = Get-Disk -Number $DiskNumber -ErrorAction SilentlyContinue
-    
+
     $Partition = Get-Partition -DriveLetter $DriveLetter -ErrorAction SilentlyContinue
 
     $FSLabel = Get-Volume -DriveLetter $DriveLetter -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FileSystemLabel
 
-    $BlockSize = Get-WmiObject -Query "SELECT BlockSize from Win32_Volume WHERE DriveLetter = '$($DriveLetter):'" -ErrorAction SilentlyContinue | select -ExpandProperty BlockSize
-    
+    $BlockSize = Get-CimInstance -Query "SELECT BlockSize from Win32_Volume WHERE DriveLetter = '$($DriveLetter):'" -ErrorAction SilentlyContinue | select -ExpandProperty BlockSize
+
     if($BlockSize){
+        $AllocationUnitSize = $BlockSize
+    } else {
+        # If Get-CimInstance did not return a value, try again with Get-WmiObject
+        $BlockSize = Get-WmiObject -Query "SELECT BlockSize from Win32_Volume WHERE DriveLetter = '$($DriveLetter):'" -ErrorAction SilentlyContinue | select -ExpandProperty BlockSize
         $AllocationUnitSize = $BlockSize
     }
 
@@ -54,17 +58,17 @@ function Set-TargetResource
         [string] $FSLabel,
         [UInt32] $AllocationUnitSize
     )
-    
+
     try
     {
         $Disk = Get-Disk -Number $DiskNumber -ErrorAction Stop
-    
+
         if ($Disk.IsOffline -eq $true)
         {
             Write-Verbose 'Setting disk Online'
             $Disk | Set-Disk -IsOffline $false
         }
-        
+
         if ($Disk.IsReadOnly -eq $true)
         {
             Write-Verbose 'Setting disk to not ReadOnly'
@@ -90,7 +94,7 @@ function Set-TargetResource
         }
 
         # Check if existing partition already has file system on it
-        
+
         if (($Disk | Get-Partition | Get-Volume ) -eq $null)
         {
 
@@ -110,7 +114,7 @@ function Set-TargetResource
             }
 
             $Partition = New-Partition @PartParams
-            
+
             # Sometimes the disk will still be read-only after the call to New-Partition returns.
             Start-Sleep -Seconds 5
 
@@ -126,7 +130,7 @@ function Set-TargetResource
             }
             if($AllocationUnitSize)
             {
-                $VolParams["AllocationUnitSize"] = $AllocationUnitSize 
+                $VolParams["AllocationUnitSize"] = $AllocationUnitSize
             }
 
             $Volume = $Partition | Format-Volume @VolParams
@@ -137,16 +141,17 @@ function Set-TargetResource
                 Write-Verbose -Message "Successfully initialized '$($DriveLetter)'."
             }
         }
-        else 
+        else
         {
             Write-Verbose -Message "The volume already exists, adjusting drive letter..."
             $VolumeDriveLetter = ($Disk | Get-Partition | Get-Volume).driveletter
             Set-Partition -DriveLetter $VolumeDriveLetter -NewDriveLetter $DriveLetter
         }
-    }    
+    }
     catch
     {
-        Throw "Disk Set-TargetResource failed with the following error: '$($Error[0])'"
+        $message = $_.Exception.Message
+        Throw "Disk Set-TargetResource failed with the following error: '$($message)'"
     }
 }
 
@@ -181,7 +186,7 @@ function Test-TargetResource
         Write-Verbose 'Disk is not Online'
         return $false
     }
-    
+
     if ($Disk.IsReadOnly -eq $true)
     {
         Write-Verbose 'Disk set as ReadOnly'
@@ -211,15 +216,19 @@ function Test-TargetResource
         }
     }
 
-    $BlockSize = Get-WmiObject -Query "SELECT BlockSize from Win32_Volume WHERE DriveLetter = '$($DriveLetter):'" -ErrorAction SilentlyContinue  | select -ExpandProperty BlockSize
-    
+    $BlockSize = Get-CimInstance -Query "SELECT BlockSize from Win32_Volume WHERE DriveLetter = '$($DriveLetter):'" -ErrorAction SilentlyContinue  | select -ExpandProperty BlockSize
+    if (-not($BlockSize)){
+        # If Get-CimInstance did not return a value, try again with Get-WmiObject
+        $BlockSize = Get-WmiObject -Query "SELECT BlockSize from Win32_Volume WHERE DriveLetter = '$($DriveLetter):'" -ErrorAction SilentlyContinue  | select -ExpandProperty BlockSize
+    }
+
     if($BlockSize -gt 0 -and $AllocationUnitSize -ne 0)
     {
         if($AllocationUnitSize -ne $BlockSize)
         {
             # Just write a warning, we will not try to reformat a drive due to invalid allocation unit sizes
             Write-Verbose "Drive $DriveLetter allocation unit size does not match expected value. Current: $($BlockSize.BlockSize/1kb)kb Expected: $($AllocationUnitSize/1kb)kb"
-        }    
+        }
     }
 
     # Volume label

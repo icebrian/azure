@@ -13,7 +13,7 @@ function Get-TargetResource
         $ImagePath
     )
 
-    #Validate driveletter has a ":"    
+    #Validate driveletter has a ":"
     If($DriveLetter -match "^[A-Za-z][:]$")
     {
         Write-Verbose "DriveLetter validation passed."
@@ -90,12 +90,12 @@ function Set-TargetResource
             $Image = Mount-DiskImage -ImagePath $ImagePath -PassThru | Get-Volume
         }
 
-        #Verify drive letter        
+        #Verify drive letter
         $CimVolume = Get-CimInstance -ClassName Win32_Volume | where {$_.DeviceId -eq $Image.ObjectId}
         If($CimVolume.DriveLetter -ne $DriveLetter)
         {
             Write-Verbose "Drive letter does not match expected value. Expected DriveLetter $DriveLetter Actual DriverLetter $($CimVolume.DriveLetter)"
-            Write-Verbose "Changing drive letter to $DriveLetter"            
+            Write-Verbose "Changing drive letter to $DriveLetter"
             Set-CimInstance -InputObject $CimVolume -Property @{DriveLetter = $DriveLetter}
         }
     }
@@ -129,7 +129,7 @@ function Test-TargetResource
         $Ensure = 'Present'
     )
 
-    #Validate driveletter has a ":"    
+    #Validate driveletter has a ":"
     If($DriveLetter -match "^[A-Za-z][:]$")
     {
         Write-Verbose "DriveLetter validation passed."
@@ -151,12 +151,12 @@ function Test-TargetResource
             return $false
         }
 
-        #Verify drive letter        
+        #Verify drive letter
         $CimVolume = Get-CimInstance -ClassName Win32_Volume | where {$_.DeviceId -eq $Image.ObjectId}
         If($CimVolume.DriveLetter -ne $DriveLetter)
         {
             Write-Verbose "Drive letter does not match expected value. Expected DriveLetter $DriveLetter Actual DriverLetter $($CimVolume.DriveLetter)"
-            
+
             return $false
         }
         #If the script made it this far the ISO is mounted and has the desired DriveLetter
@@ -165,8 +165,8 @@ function Test-TargetResource
 
     If($Ensure -eq 'Absent' -and $Image)
     {
-        Write-Verbose "Expect ISO to be dismounted. Actual is mounted with drive letter $($Image.DriveLetter)" 
-        return $false       
+        Write-Verbose "Expect ISO to be dismounted. Actual is mounted with drive letter $($Image.DriveLetter)"
+        return $false
     }
     Else
     {
