@@ -8,4 +8,6 @@ This template allows you to create a Windows Virtual Machine from a specified im
 
 Note: Uses https://github.com/PowerShell/xStorage
 
-Very Important: "DiskNumber" in DataDisk.ps1 script needs to start with ID 2. ID 0 is for OS disk, whilst ID 1 is for TMP disk.
+Very Important: 
+- "DiskNumber" in DataDisk.ps1 script needs to start with ID 2. ID 0 is for OS disk, whilst ID 1 is for TMP disk.
+- Drive Letter must start with F due to Tmp & Cd-drive

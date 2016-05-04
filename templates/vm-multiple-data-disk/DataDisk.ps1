@@ -13,7 +13,7 @@ Configuration DataDisk
             xDisk DataVolume2
             {
                 DiskNumber = 2
-                DriveLetter = 'E'
+                DriveLetter = 'F'
                 DependsOn = '[xWaitforDisk]Disk2'
             }
 
@@ -25,7 +25,7 @@ Configuration DataDisk
             xDisk DataVolume3
             {
                 DiskNumber = 3
-                DriveLetter = 'F'
+                DriveLetter = 'G'
                 DependsOn = '[xWaitforDisk]Disk3'
             }
 
@@ -37,7 +37,7 @@ Configuration DataDisk
             xDisk DataVolume4
             {
                 DiskNumber = 4
-                DriveLetter = 'G'
+                DriveLetter = 'H'
                 DependsOn = '[xWaitforDisk]Disk4'
             }
 
@@ -49,7 +49,7 @@ Configuration DataDisk
             xDisk DataVolume5
             {
                 DiskNumber = 5
-                DriveLetter = 'H'
+                DriveLetter = 'I'
                 DependsOn = '[xWaitforDisk]Disk5'
             }
 
