@@ -1,0 +1,36 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminUsername": {
+      "value": "superuser"
+    },
+    "adminPassword": {
+      "value": "Iscebria001"
+    },
+    "dnsLabelPrefix": {
+      "value": "octo-prefix0"
+    },
+    "vmSize": {
+      "value": "Standard_D2"
+    },
+    "sizeOfEachDataDiskInGB": {
+      "value": "10"
+    },
+    "OctopusApiKey": {
+      "value": "API-ABCDEF12345678910"
+    },
+    "OctopusServerUrl": {
+      "value": "https://demo.octopusdeploy.com/"
+    },
+    "OctopusEnvironments": {
+      "value": ["Development"]
+    },
+    "OctopusRoles": {
+      "value": ["web-server", "app-server"]
+    },
+    "OctopusListenPort": {
+      "value": 10933
+    }
+  }
+}
