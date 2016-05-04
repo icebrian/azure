@@ -69,7 +69,7 @@
     "imageOffer": "WindowsServer",
     "imageSKU": "2012-R2-Datacenter",
     "imageVersion": "latest",
-    "publicIPAddressName": "myOctoPubIP1",
+    "publicIPAddressName": "myOctoPubIP2",
     "publicIPAddressType": "Dynamic",
     "storageAccountType": "Standard_LRS",
     "virtualNetworkName": "myVNET",

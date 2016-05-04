@@ -206,6 +206,13 @@ function Request-File
     )
 
     Write-Verbose "Downloading $url to $saveAs"
+    [System.Net.ServicePointManager]::Expect100Continue = $true;
+    [System.Net.ServicePointManager]::SecurityProtocol = `
+    [System.Net.SecurityProtocolType]::Ssl3 -bor `
+    [System.Net.SecurityProtocolType]::Tls -bor `
+    [System.Net.SecurityProtocolType]::Tls11 -bor `
+    [System.Net.SecurityProtocolType]::Tls12
+
     $downloader = new-object System.Net.WebClient
     $downloader.DownloadFile($url, $saveAs)
 }
