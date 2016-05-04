@@ -1,6 +1,6 @@
-# Create a Virtual Machine from a Windows Image and install/configura Octopus Tentacle
+# Create a Virtual Machine from a Windows Image and install/configure Octopus Tentacle
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Ficebrian%2Fazure%2Fmaster%2Ftemplates%2Fvm-octopus-tentacle%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
