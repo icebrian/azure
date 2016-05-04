@@ -6,12 +6,12 @@ Configuration DataDisk
         {
             xWaitforDisk Disk
             {
-                DiskNumber = 1
+                DiskNumber = 2
             }
 
             xDisk DataVolume
             {
-                DiskNumber = 1
+                DiskNumber = 2
                 DriveLetter = 'F'
                 DependsOn = '[xWaitforDisk]Disk'
             }
