@@ -10,11 +10,12 @@ Configuration DataDisk
                 DiskNumber = 1
             }
 
-            xDisk Volume
+            xDisk DataVolume
             {
                 DiskNumber = 1
                 DriveLetter = 'F'
                 DependsOn = '[xWaitforDisk]Disk'
             }
+
         }
 }
