@@ -5,16 +5,52 @@ Configuration DataDisk
 
         Node localhost
         {
-            xWaitforDisk Disk
+            xWaitforDisk Disk2
             {
                 DiskNumber = 2
             }
 
-            xDisk DataVolume
+            xDisk DataVolume2
             {
                 DiskNumber = 2
+                DriveLetter = 'E'
+                DependsOn = '[xWaitforDisk]Disk2'
+            }
+
+            xWaitforDisk Disk3
+            {
+                DiskNumber = 3
+            }
+
+            xDisk DataVolume3
+            {
+                DiskNumber = 3
                 DriveLetter = 'F'
-                DependsOn = '[xWaitforDisk]Disk'
+                DependsOn = '[xWaitforDisk]Disk3'
+            }
+
+            xWaitforDisk Disk4
+            {
+                DiskNumber = 4
+            }
+
+            xDisk DataVolume4
+            {
+                DiskNumber = 4
+                DriveLetter = 'G'
+                DependsOn = '[xWaitforDisk]Disk4'
+            }
+
+            xWaitforDisk Disk5
+            {
+                DiskNumber = 5
+            }
+
+            xDisk DataVolume5
+            {
+                DiskNumber = 5
+                DriveLetter = 'H'
+                DependsOn = '[xWaitforDisk]Disk5'
             }
 
         }
