@@ -18,10 +18,10 @@
       "value": "myDeployedVM2"
     },
     "chef_server_url": {
-      "value": "https://mychef.cloudapp.net/organizations/microsoft"
+      "value": "https://mychef.cloudapp.net/organizations/myorg"
     },
     "validation_client_name": {
-      "value": "microsoft-validator"
+      "value": "myorg-validator"
     },
     "runlist": {
       "value": "role[windows]"
