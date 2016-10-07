@@ -24,4 +24,5 @@ $location = "West Europe"
 
 New-AzureRmResourceGroup -Name $rgName -Location $location
 
+# -Mode Incremental  || -Mode Complete
 New-AzureRmResourceGroupDeployment -Name $rgName -ResourceGroupName $rgName -TemplateUri https://raw.githubusercontent.com/icebrian/azure/master/templates/vm-bootstrap-chef/azuredeploy.json -TemplateParameterUri https://raw.githubusercontent.com/icebrian/azure/master/templates/vm-bootstrap-chef/azuredeploy.parameters.json -Verbose
