@@ -3,13 +3,13 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "envPrefixName": {
-      "value": "dep994"
+      "value": "env1"
     },
     "location": {
       "value": "West Europe"
     },
     "username": {
-      "value": "iis2sql1"
+      "value": "demouser"
     },
     "password": {
       "value": "Passw0rd123"
