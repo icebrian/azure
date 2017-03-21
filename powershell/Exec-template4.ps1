@@ -1,7 +1,3 @@
-# Description: 
-# Author: Istvan Cebrian
-# Version: 0.1
-######################################################################################
 
 $year = (Get-Date).Year
 $month = (Get-Date).Month
@@ -16,9 +12,9 @@ $location = "West Europe"
 
 #Write-Host "Resource Group Name: $name"
 
-#Login-AzureRmAccount
+Login-AzureRmAccount
 #Get-AzureRmSubscription
-#Select-AzureRmSubscription -SubscriptionId fb8f8229-3cbd-4811-843c-ce7344396f8a
+Select-AzureRmSubscription -SubscriptionId fb8f8229-3cbd-4811-843c-ce7344396f8a
 
 New-AzureRmResourceGroup -Name $rgName -Location $location
 
