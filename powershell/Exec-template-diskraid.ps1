@@ -18,6 +18,8 @@ $location = "West Europe"
 
 Login-AzureRmAccount
 
+Select-AzureRmSubscription -SubscriptionId fb8f8229-3cbd-4811-843c-ce7344396f8a
+
 New-AzureRmResourceGroup -Name $rgName -Location $location
 
 New-AzureRmResourceGroupDeployment -Name $rgName -ResourceGroupName $rgName -TemplateUri https://raw.githubusercontent.com/icebrian/azure/master/templates/datadisks-ubuntu-vm/azuredeploy.json -TemplateParameterUri https://raw.githubusercontent.com/icebrian/azure/master/templates/datadisks-ubuntu-vm/azuredeploy.parameters.json -Verbose
