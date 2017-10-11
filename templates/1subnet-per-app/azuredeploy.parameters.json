@@ -1,0 +1,39 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "envPrefixName": {
+      "value": "env1"
+    },
+    "location": {
+      "value": "West Europe"
+    },
+    "username": {
+      "value": "demouser"
+    },
+    "password": {
+      "value": "Passw0rd123"
+    },
+    "webSrvVMSize": {
+      "value": "Standard_DS2"
+    },
+    "numberOfWebSrvs": {
+      "value": 2
+    },
+    "sqlVMSize": {
+      "value": "Standard_DS3"
+    },
+    "storageAccountType": {
+      "value": "Premium_LRS"
+    },
+    "address": {
+      "value": "10.99.1.0/16"
+    },
+    "feSubnet": {
+      "value": "10.99.1.0/24"
+    },
+    "dbSubnet": {
+      "value": "10.99.2.0/24"
+    }
+  }
+}

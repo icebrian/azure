@@ -1,0 +1,30 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "West Europe"
+    },
+    "puppetMasterVmName": {
+      "value": "puppetmaster"
+    },
+    "vmSize": {
+      "value": "Standard_D2"
+    },
+    "adminUsername": {
+      "value": "collabadmin"
+    },
+    "adminPassword": {
+      "value": "cm@zure%2016"
+    },
+    "dnsLabelPrefix": {
+      "value": "newtvm5"
+    },
+    "puppet_master_server_url": {
+      "value": "puppet-cl372.cloudapp.net"
+    },
+    "storageAccountNamePrefix": {
+      "value": "newtvmstor5"
+    }
+  }
+}
