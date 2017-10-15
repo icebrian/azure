@@ -11,4 +11,3 @@ Requirements:
 - Azure Automation Account with contained script in a runbook
 - Automation Account Variable Asset with the name “Default Azure Subscription” and your Subscription ID as value
 - Tags with name “AutoShutdownSchedule” and value such as: “11PM -> 7AM, Saturday, Sunday”
-
