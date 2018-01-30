@@ -12,7 +12,7 @@
             "value": "sysadmin"
         },
         "adminPassword": {
-            "value": "UPassword0#123"
+            "value": ""
         },
         "authenticationType": {
             "value": "password"
