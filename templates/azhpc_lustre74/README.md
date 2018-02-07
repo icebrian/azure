@@ -16,11 +16,6 @@ Table of Contents
   
 
 # Quickstart
-az login
-az account set -s 6373b93d-5576-42bb-88b4-a9297a49cf4f
-# Azure Internal Consumption (Active) fb8f8229-3cbd-4811-843c-ce7344396f8a
-# Secondary Azure Internal Consumption 6373b93d-5576-42bb-88b4-a9297a49cf4f
-
 To deploy an Infiniband enabled compute cluster with a Lustre File Server attached and mounted:
 1. Make sure you have quota for H-series (compute cluster) and F-series (jumpbox and storage cluster)
 
@@ -36,8 +31,6 @@ To deploy an Infiniband enabled compute cluster with a Lustre File Server attach
    - For example: `./deploy.sh LUSTRETESET-RG100 4 10 5`
   - This example would be a file server with 4 OSS servers and 40 total (P50) disks, for 160TB and 5 compute nodes
    - The total disk size is the number of OSS Servers multipled by the number of disks per server multipled by 4TB
-   - For example2: `./deploy.sh lustrecluster01 3 4 2`
-   - This example would be a file server with 3 OSS servers and 12 total (P30) disks, for 12TB and 2 compute nodes
 
 
 6. Complete deployment will take around 40 minutes
