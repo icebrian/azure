@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters":{
+		"adminUsername": {
+			"value": "lustreuser"
+		},
+		"sshKeyData": {
+			"value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCee3TJL9E2PiLJq7dJkd0bAjeJg7IGMGkuY7dIm3TqwTbbj3KNp0WLjnku+vaEIldr+Bkq89dOfIVdfSii8u9LlwLGQIB/ppKwmHWzsQUfCmNGFSqhZTfaobqDqGFBwMPOQxBiOXbmT0BFgYBFT7p+fb2ox3PuCdCiUxRllMJ6obcjSA/HD3VbAbBcGfIwsSpXNl9KB8gVLhhKBtvX6DeADzYRm7lFVcDNoA31cuO1LDMgVkAq0goowcDhaclY2Uv/9DyyqtTLKfQwjXQrig4mhZ/6CDpfzsjZVI9gPqcAqoCt4nwzKEWYz0taXADOPvqJf20oJp6h4YoxPUodZ2j3 iscebria@ISCEBRIA-X1YOGA"
+		},
+		"vnetname": {
+			"value": "an2lustrevnettkjq"
+		},
+		"clientId": {
+			"value": "a320c81b-207c-4d0d-8551-d81a9a3c279a"
+        },
+        "clientSecret": {
+			"value": "40b8baf9-da40-47e2-b734-6c08e773b7ad"
+        },
+        "tenantId": {
+			"value": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+        }
+	}
+}

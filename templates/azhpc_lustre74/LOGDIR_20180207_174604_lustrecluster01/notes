@@ -1,0 +1,58 @@
+iscebria@ISCEBRIA-X1YOGA:~/c-iscebria/Documents/Workspace/GitHub/azure/templates/azhpc_lustre74$ ./deploy.sh lustrecluster01 3 4 2
+cp: cannot stat '../cred_lustre.yaml': No such file or directory
+
+**********************************************
+Creating a Lustre file server
+Resource group: lustrecluster01
+Compute nodes: 2
+Storage nodes: 3
+Disks per storage node: 4
+Disks size in storage nodes: P30
+**********************************************
+
+################ Creating MGSMDT @ 20180207_174604
+Location    Name
+----------  ---------------
+westeurope  lustrecluster01
+################ Validation
+Result     CorrelationId
+---------  ------------------------------------
+Succeeded  e1a04f07-1e2d-42cc-bac0-07feebc53c7a
+################ Deployment
+Name                      ResourceGroup
+------------------------  ---------------
+lustre-master-deployment  lustrecluster01
+jumpbox public ip: 13.93.83.240
+mgsmdt private ip: 10.36.0.4
+
+################ Creating OSS Cluster @ 20180207_180119
+################ Validation
+Result     CorrelationId
+---------  ------------------------------------
+Succeeded  47eb6bf3-49dd-4c64-9eb5-d001a9da38b9
+################ Deployment
+Name                      ResourceGroup
+------------------------  ---------------
+lustre-server-deployment  lustrecluster01
+OSS Server private ip(s):
+10.36.0.5
+10.36.0.6
+10.36.0.7
+
+################ Creating Compute Cluster @ 20180207_181623
+################ Validation
+Result     CorrelationId
+---------  ------------------------------------
+Succeeded  042d3b8d-3b48-4571-bf0d-094358482e08
+################ Deployment
+Name                      ResourceGroup
+------------------------  ---------------
+lustre-client-deployment  lustrecluster01
+Compute Server private ip(s):
+10.36.0.8
+10.36.0.9
+
+################ Deployment started @ 20180207_174604
+################ Deployment complete @ 20180207_183704
+
+################ Connection string: ssh -i id_rsa_lustre lustreuser@13.93.83.240

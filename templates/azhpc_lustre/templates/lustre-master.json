@@ -1,0 +1,405 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "VMSize": {
+      "type": "string",
+      "defaultValue": "Standard_DS3_v2",
+      "allowedValues": [
+        "Standard_DS1",
+        "Standard_DS2",
+        "Standard_DS3",
+        "Standard_DS4",
+        "Standard_DS11",
+        "Standard_DS12",
+        "Standard_DS13",
+        "Standard_DS14",
+        "Standard_DS1_v2",
+        "Standard_DS2_v2",
+        "Standard_DS3_v2",
+        "Standard_DS4_v2",
+        "Standard_DS5_v2",
+        "Standard_DS11_v2",
+        "Standard_DS12_v2",
+        "Standard_DS13_v2",
+        "Standard_DS14_v2",
+        "Standard_DS15_v2",
+        "Standard_F1s",
+        "Standard_F2s",
+        "Standard_F4s",
+        "Standard_F8s",
+        "Standard_F16s",
+        "Standard_GS1",
+        "Standard_GS2",
+        "Standard_GS3",
+        "Standard_GS4",
+        "Standard_GS5",
+        "Standard_L4s",
+        "Standard_L8s",
+        "Standard_L16s",
+        "Standard_L32s"
+      ],
+      "metadata": {
+        "description": "sku to use for the storage nodes - only premium disks VMs are allowed"
+      }
+    },
+    "adminUsername": {
+      "type": "string",
+      "metadata": {
+        "description": "Admin username on all VMs."
+      }
+    },
+    "sshKeyData": {
+      "type": "string",
+      "metadata": {
+        "description": "SSH rsa public key file as a string."
+      }
+    },
+    "clientId": {
+      "type": "string",
+      "metadata": {
+        "description": "ClientId for az login."
+      }
+    },
+    "clientSecret": {
+      "type": "securestring",
+      "metadata": {
+        "description": "ClientSecret for az login."
+      }
+    },
+    "tenantId": {
+      "type": "string",
+      "metadata": {
+        "description": "tenantId for az login."
+      }
+    },
+    "vnetname": {
+      "type": "string",
+      "metadata": {
+        "description": "Virtual Network name"
+      }
+    }
+  },
+  "variables": {
+    "myTemplateLink": "https://raw.githubusercontent.com/tanewill/azhpc_lustre/master/",
+    "addressPrefix": "10.36.0.0/16",
+    "subnetPrefix": "10.36.0.0/24",
+    "subnetPrefix2": "10.36.1.0/24",
+    "virtualNetworkName": "[parameters('vnetname')]",
+    "vmssName": "mgsmdt",
+    "vmsscount": 2,
+    "vmssNameVolume": "[concat(variables('vmssName'), 'last')]",
+    "vmssCountVolume": 1,
+    "jumpboxName": "[toLower(concat('a',substring(uniqueString(resourceGroup().id),4,4),'jumpbox'))]",
+    "subnetName": "lustre-subnet",
+    "subnetName2": "compute-subnet",
+    "storageDiskSize": 512,
+    "numStorageDisks": 1,
+    "numMetadataDisks": 0,
+    "nicName": "[concat(variables('vmssName'), 'nic')]",
+    "ipConfigName": "[concat(variables('vmssName'), 'ipconfig')]",
+    "networkApiVersion": "2016-06-01",
+    "insightsApiVersion": "2015-04-01",
+    "location": "[resourceGroup().location]",
+    "installLIS": "bash InstallLIS.sh",    
+    "image": "CentOS_7.3",
+    "lustreNodeSettings": {
+      "VMsku": "[parameters('VMSize')]",
+      "storageDiskSize": "[variables('storageDiskSize')]",
+      "numStorageDisks": "[variables('numStorageDisks')]",
+      "numStorageDisksLast": 1,
+      "numMetadataDisks": 0
+    },
+    "computeNodeImages": {
+      "CentOS_7.3": {
+        "publisher": "OpenLogic",
+        "offer": "CentOS",
+        "sku": "7.3",
+        "version": "latest"
+      },
+      "CentOS_7.2": {
+        "publisher": "OpenLogic",
+        "offer": "CentOS",
+        "sku": "7.2",
+        "version": "latest"
+      },
+      "RHEL_7.3": {
+        "publisher": "RedHat",
+        "offer": "RHEL",
+        "sku": "7.2",
+        "version": "latest"
+      }
+    },
+    "nodeOSSettings": {
+      "adminUserName": "[parameters('adminUserName')]",
+      "sshKeyData": "[parameters('sshKeyData')]",
+      "imageReference": "[variables('computeNodeImages')[variables('image')]]"
+    },
+    "computeApiVersion": "2016-04-30-preview",
+    "sshKeyPath": "[concat('/home/',variables('nodeOSSettings').adminUserName,'/.ssh/authorized_keys')]",
+    "storageDiskArray": [
+      {
+        "diskSizeGB": "[variables('lustreNodeSettings').storageDiskSize]",
+        "lun": "[add(variables('lustreNodeSettings').numMetadataDisks, 0)]",
+        "createOption": "Empty"
+      },
+      {
+        "diskSizeGB": "[variables('lustreNodeSettings').storageDiskSize]",
+        "lun": "[add(variables('lustreNodeSettings').numMetadataDisks, 1)]",
+        "createOption": "Empty"
+      },
+      {
+        "diskSizeGB": "[variables('lustreNodeSettings').storageDiskSize]",
+        "lun": "[add(variables('lustreNodeSettings').numMetadataDisks, 2)]",
+        "createOption": "Empty"
+      },
+      {
+        "diskSizeGB": "[variables('lustreNodeSettings').storageDiskSize]",
+        "lun": "[add(variables('lustreNodeSettings').numMetadataDisks, 3)]",
+        "createOption": "Empty"
+      },
+      {
+        "diskSizeGB": "[variables('lustreNodeSettings').storageDiskSize]",
+        "lun": "[add(variables('lustreNodeSettings').numMetadataDisks, 4)]",
+        "createOption": "Empty"
+      },
+      {
+        "diskSizeGB": "[variables('lustreNodeSettings').storageDiskSize]",
+        "lun": "[add(variables('lustreNodeSettings').numMetadataDisks, 5)]",
+        "createOption": "Empty"
+      },
+      {
+        "diskSizeGB": "[variables('lustreNodeSettings').storageDiskSize]",
+        "lun": "[add(variables('lustreNodeSettings').numMetadataDisks, 6)]",
+        "createOption": "Empty"
+      },
+      {
+        "diskSizeGB": "[variables('lustreNodeSettings').storageDiskSize]",
+        "lun": "[add(variables('lustreNodeSettings').numMetadataDisks, 7)]",
+        "createOption": "Empty"
+      },
+      {
+        "diskSizeGB": "[variables('lustreNodeSettings').storageDiskSize]",
+        "lun": "[add(variables('lustreNodeSettings').numMetadataDisks, 8)]",
+        "createOption": "Empty"
+      },
+      {
+        "diskSizeGB": "[variables('lustreNodeSettings').storageDiskSize]",
+        "lun": "[add(variables('lustreNodeSettings').numMetadataDisks, 9)]",
+        "createOption": "Empty"
+      }
+    ]
+  },
+  "resources": [
+    { "type": "Microsoft.Network/virtualNetworks",
+      "name": "[variables('virtualNetworkName')]",
+      "location": "[variables('location')]",
+      "apiVersion": "[variables('networkApiVersion')]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[variables('addressPrefix')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[variables('subnetName')]",
+            "properties": {
+              "addressPrefix": "[variables('subnetPrefix')]"
+            }
+          },
+          {
+            "name": "[variables('subnetName2')]",
+            "properties": {
+              "addressPrefix": "[variables('subnetPrefix2')]"
+            }
+          }
+        ]
+      }
+    }, 
+    {"type": "Microsoft.Network/publicIPAddresses",
+      "name": "[concat(variables('jumpboxName'),'pip')]",
+      "apiVersion": "[variables('networkApiVersion')]",
+      "location": "[variables('location')]",
+      "properties": {
+        "publicIPAllocationMethod": "Dynamic",
+        "dnsSettings": {
+          "domainNameLabel": "[variables('jumpboxName')]"
+        }
+      }
+    },
+    { "type": "Microsoft.Network/networkInterfaces",
+      "name": "[concat(variables('jumpboxName'),'nic')]",
+      "apiVersion": "[variables('networkApiVersion')]",
+      "location": "[variables('location')]",
+      "properties": {
+        "ipConfigurations": [{
+          "name": "[concat(variables('jumpboxName'),'ipconfig')]",
+          "properties": {
+            "privateIPAllocationMethod": "Dynamic",
+            "publicIPAddress": {
+              "id": "[resourceId('Microsoft.Network/publicIPAddresses',concat(variables('jumpboxName'),'pip'))]"
+            },
+            "subnet": {
+              "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'), '/subnets/', variables('subnetName2'))]"
+            }
+          }
+        }]
+      },
+      "dependsOn": [
+        "[concat('Microsoft.Network/publicIPAddresses/', variables('jumpboxName'),'pip')]",
+        "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
+      ]
+    },
+    { "type": "Microsoft.Compute/virtualMachines",
+      "name": "[variables('jumpboxName')]",
+      "apiVersion": "[variables('computeApiVersion')]",
+      "location": "[variables('location')]",
+      "dependsOn": [
+        "[concat('Microsoft.Network/networkInterfaces/',concat(variables('jumpboxName'),'nic'))]"
+      ],
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "Standard_D4_v2"
+        },
+        "osProfile": {
+          "computerName": "[variables('jumpboxName')]",
+          "adminUsername": "[parameters('adminUsername')]",
+          "linuxConfiguration": {
+            "disablePasswordAuthentication": "true",
+            "ssh": {
+              "publicKeys": [
+                {
+                  "path": "[variables('sshKeyPath')]",
+                  "keyData": "[variables('nodeOSSettings').sshKeyData]"
+                }
+              ]
+            }
+          }
+        },
+        "storageProfile": {
+          "imageReference": "[variables('nodeOSSettings').imageReference]",
+          "osDisk": {
+            "name": "[concat(variables('jumpboxName'), 'disk')]",
+            "managedDisk": {
+              "storageAccountType": "Standard_LRS"
+            },
+            "createOption": "FromImage"
+          }
+        },
+        "networkProfile": {
+          "networkInterfaces": [{
+            "id": "[resourceId('Microsoft.Network/networkInterfaces',concat(variables('jumpboxName'),'nic'))]"
+          }]
+        }
+      },
+      "resources": [
+        { "type": "extensions",
+        "apiVersion": "2017-03-30",
+        "name": "jumpboxconfiguration",
+        "location": "[resourceGroup().location]",
+        "dependsOn": [
+          "[concat('Microsoft.Compute/virtualMachines/', variables('jumpboxName'))]"
+        ],
+        "properties": { "type": "CustomScript",
+          "publisher": "Microsoft.Azure.Extensions",
+          "typeHandlerVersion": "2.0",
+          "autoUpgradeMinorVersion": true,
+          "settings": {
+            "fileUris": [
+              "[concat(variables('myTemplateLink'), 'scripts/configure_jumpbox.sh')]"
+            ],
+            "commandToExecute": "[concat('bash configure_jumpbox.sh ',parameters('clientId'),' ',parameters('clientSecret'),' ',parameters('tenantId'),' ',parameters('adminUsername'))]"
+          }
+        }
+      }]
+    },
+    { "type": "Microsoft.Compute/virtualMachineScaleSets",
+      "name": "[variables('vmssName')]",
+      "location": "[variables('location')]",
+      "apiVersion": "[variables('computeApiVersion')]",
+      "dependsOn": [
+        "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
+      ],
+      "sku": {
+        "name": "[variables('lustreNodeSettings').VMsku]",
+        "tier": "Standard",
+        "capacity": 1
+      },
+      "properties": {
+        "overprovision": "false",
+        "upgradePolicy": {
+          "mode": "Manual"
+        },
+        "virtualMachineProfile": {
+          "storageProfile": {
+            "osDisk": {
+              "createOption": "FromImage",
+              "managedDisk": {
+                "storageAccountType": "Premium_LRS"
+              }
+            },
+            "imageReference": "[variables('nodeOSSettings').imageReference]",
+            "dataDisks": "[concat(take(variables('storageDiskArray'),variables('lustreNodeSettings').numStorageDisks))]"
+          },
+          "osProfile": {
+            "computerNamePrefix": "[variables('vmssName')]",
+            "adminUsername": "[parameters('adminUsername')]",
+            "linuxConfiguration": {
+              "disablePasswordAuthentication": "true",
+              "ssh": {
+                "publicKeys": [
+                  {
+                    "path": "[variables('sshKeyPath')]",
+                    "keyData": "[variables('nodeOSSettings').sshKeyData]"
+                  }
+                ]
+              }
+            }
+          },
+          "networkProfile": {
+            "networkInterfaceConfigurations": [
+              {
+                "name": "[variables('nicName')]",
+                "properties": {
+                  "primary": "true",
+                  "ipConfigurations": [
+                    {
+                      "name": "[variables('ipConfigName')]",
+                      "properties": {
+                        "subnet": {
+                          "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'), '/subnets/', variables('subnetName'))]"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "extensionProfile": {
+            "extensions": [
+              {
+                "name": "lapextension",
+                "properties": {
+                  "publisher": "Microsoft.Azure.Extensions",
+                  "type": "CustomScript",
+                  "typeHandlerVersion": "2.0",
+                  "autoUpgradeMinorVersion": true,
+                  "settings": {
+                    "fileUris": [
+                      "[concat(variables('myTemplateLink'), 'scripts/master-setup.sh')]",
+                      "[concat(variables('myTemplateLink'), 'scripts/install_lustre.sh')]"
+                    ],
+                    "commandToExecute": "[concat('bash master-setup.sh ',variables('nodeOSSettings').adminUserName,';','bash install_lustre.sh ', 'meta',' ','https://raw.githubusercontent.com/tanewill/azhpc_lustre/master/scripts')]"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+
+  ]
+}

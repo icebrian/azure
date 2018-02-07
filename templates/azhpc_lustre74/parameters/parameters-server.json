@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters":{
+		"nodeCount": {
+			"value": _OSSNODES
+        },		
+        "VMSize": {
+			"value": "_OSSVMSKU"
+		},
+		"clientId": {
+			"value": "_CID"
+        },
+        "clientSecret": {
+			"value": "_CSEC"
+        },
+        "tenantId": {
+			"value": "_TENID"
+        },
+        "adminUsername": {
+			"value": "_ADMINUSER"
+        },
+        "sshKeyData": {
+			"value": "_SSHKEY"
+        },
+		"vnetname": {
+			"value": "_VNETNAME"
+		},
+        "storageDiskSize": {
+			"value": "_SSDSIZE"
+        },
+        "StorageDisksCount": {
+			"value": _SDS
+		}
+	}
+}

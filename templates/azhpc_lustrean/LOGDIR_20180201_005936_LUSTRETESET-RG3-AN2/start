@@ -1,0 +1,79 @@
+iscebria@ISCEBRIA-X1YOGA:~/c-iscebria/Documents/Workspace/GitHub/azhpc_lustrean$ ./deploy.sh LUSTRETESET-RG3-AN2 3 3 3
+cp: cannot stat '../cred_lustre.yaml': No such file or directory
+
+**********************************************
+Creating a Lustre file server
+Resource group: LUSTRETESET-RG3-AN2
+Storage nodes: 3
+4TB Disks per node: 3
+Total storage (TB): 36
+Compute nodes: 3
+**********************************************
+
+################ Creating MGSMDT @ 20180201_005936
+Location    Name
+----------  -------------------
+westeurope  LUSTRETESET-RG3-AN2
+################ Validation
+Result     CorrelationId
+---------  ------------------------------------
+Succeeded  9ea3a3a8-2d11-4db5-8f7e-4050219b7920
+################ Deployment
+Name                      ResourceGroup
+------------------------  -------------------
+lustre-master-deployment  LUSTRETESET-RG3-AN2
+jumpbox public ip: 52.166.57.76
+mgsmdt private ip: 10.37.0.4
+
+################ Creating OSS Cluster @ 20180201_011648
+################ Validation
+Result     CorrelationId
+---------  ------------------------------------
+Succeeded  7597b400-9662-488c-82b7-5b4090c22291
+################ Deployment
+Deployment failed. Correlation ID: de669572-4bc8-442b-8c64-2941bfe1ccd6. {
+  "status": "Failed",
+  "error": {
+    "code": "ResourceDeploymentFailure",
+    "message": "The resource operation completed with terminal provisioning state 'Failed'.",
+    "details": [
+      {
+        "code": "OSProvisioningInternalError",
+        "message": "OS Provisioning failed for VM 'ossserver_0' due to an internal error."
+      }
+    ]
+  }
+}
+OSS Server private ip(s):
+10.37.0.4
+10.37.0.5
+10.37.0.6
+
+################ Creating Compute Cluster @ 20180201_014438
+################ Validation
+Result     CorrelationId
+---------  ------------------------------------
+Succeeded  12b20a03-e029-42b4-bb88-bb5372fca443
+################ Deployment
+Deployment failed. Correlation ID: 350b1d5b-441e-47a8-add9-d8cd8b745489. {
+  "status": "Failed",
+  "error": {
+    "code": "ResourceDeploymentFailure",
+    "message": "The resource operation completed with terminal provisioning state 'Failed'.",
+    "details": [
+      {
+        "code": "VMAgentStatusCommunicationError",
+        "message": "VM 'compute_0' has not reported status for VM agent or extensions. Please verify the VM has a running VM agent, and can establish outbound connections to Azure storage."
+      }
+    ]
+  }
+}
+Compute Server private ip(s):
+10.37.0.5
+10.37.0.6
+10.37.0.7
+
+################ Deployment started @ 20180201_005936
+################ Deployment complete @ 20180201_021217
+
+################ Connection string: ssh -i id_rsa_lustre lustreuser@52.166.57.76

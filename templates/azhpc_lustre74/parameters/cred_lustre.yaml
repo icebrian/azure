@@ -1,0 +1,6 @@
+credentials:
+  management:
+    aad:
+      user_id: _USERID
+      password_id: _PASS
+      tenant_id: _TENNANT

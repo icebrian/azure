@@ -6,13 +6,13 @@
             "value": "westeurope"
         },
         "vmNamePrefix": {
-            "value": "lustre"
+            "value": "saslustrecluster"
         },
         "adminUsername": {
             "value": "sysadmin"
         },
         "adminPassword": {
-            "value": ""
+            "value": "UPassword0#123"
         },
         "authenticationType": {
             "value": "password"
@@ -24,25 +24,25 @@
             "value": "SASLustre1"
         },
         "publicIPAddressName": {
-            "value": "publicip-lustre-mgs"
+            "value": "pip-saslustrecluster-mgs1"
         },
         "publicIPAddressDomainNameLabel": {
-            "value": "saslustreclustertp"
+            "value": "saslustreclusterdns1"
         },
         "mgsVmSize": {
-            "value": "Standard_DS3_v2_Promo"
+            "value": "Standard_F8s_v2"
         },
         "mdsVmSize": {
-            "value": "Standard_DS3_v2_Promo"
+            "value": "Standard_F8s_v2"
         },
         "filesystemName": {
-            "value": "sasdata2"
+            "value": "sasdata1"
         },
         "ossCount": {
             "value": 3
         },
         "ossVmSize": {
-            "value": "Standard_DS3_v2_Promo"
+            "value": "Standard_L4s"
         },
         "ossDiskSize": {
             "value": 1023
@@ -51,7 +51,7 @@
             "value": "SASLustre1"
         },
         "storageAccountPrefix": {
-            "value": "saslustresa01tp"
+            "value": "saslustreclustersa01"
         },
         "storageAccountCount": {
             "value": 1
@@ -60,25 +60,25 @@
             "value": "Premium_LRS"
         },
         "vnetResourceGroup": {
-            "value": "SASLustre"
+            "value": "HomeBankingProd"
         },
         "vnetName": {
-            "value": "Prod3"
+            "value": "Prod"
         },
         "vnetNewOrExisting": {
             "value": "existing"
         },
         "subnetServersName": {
-            "value": "SASLUSTRE-SERVERSDROP"
+            "value": "SASLustre"
         },
         "subnetServersAddressPrefix": {
-            "value": "10.7.42.0/27"
+            "value": "10.7.32.240/28"
         },
         "subnetClientsName": {
-            "value": "SASLUSTRE-SERVERSDROP"
+            "value": "SASPROD"
         },
         "subnetClientsAddressPrefix": {
-            "value": "10.7.42.0/27"
+            "value": "10.7.32.192/27"
         }
     }
 }

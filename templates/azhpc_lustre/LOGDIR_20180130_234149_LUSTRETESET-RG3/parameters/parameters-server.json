@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters":{
+		"nodeCount": {
+			"value": 3
+        },		
+        "VMSize": {
+			"value": "Standard_F4s"
+		},
+		"clientId": {
+			"value": "a320c81b-207c-4d0d-8551-d81a9a3c279a"
+        },
+        "clientSecret": {
+			"value": "40b8baf9-da40-47e2-b734-6c08e773b7ad"
+        },
+        "tenantId": {
+			"value": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+        },
+        "adminUsername": {
+			"value": "lustreuser"
+        },
+        "sshKeyData": {
+			"value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC4nzfzuZhRjuorpJz/Snsv/9lm5t6iDIX5vsWr4fmeBAkuL9hjn2UqabbfOfMRLVISZiZAAldmou0lVa3S0p/uNMTZqeN7+IQ9/QdSDt3aEM9znhxFEgrl9qFVyqUzjDglR0jn+kayUf8Kh16bMnbR7J85XFCtNNWY6b2AblVXGtj6yBa4sArJZSHz7EJ0E/z7qHg/YQ5IGvLwS4ByJeaJe5etyz+FRGFihXZtQuwjN5+lEnHiVo5UvJ0Zw012Yzs0vmrwf6VWB9bCll3/wdeTUQSJRfD9IXQOrE/3RcTp6wfEvUIdwxp1iDheA0Q5FXTZ//NgcTjhGTwlF6pCM1Z9 iscebria@ISCEBRIA-X1YOGA"
+        },
+		"vnetname": {
+			"value": "lustrevnetvhir"
+		},
+        "storageDiskSize": {
+			"value": "P50"
+        },
+        "StorageDisksCount": {
+			"value": 3
+		}
+	}
+}
