@@ -5,7 +5,7 @@
 #
 # Modified By: Istvan Cebrian
 # Date: 24/02/2020
-# Version: 0.1
+# Version: 0.2
 #
 # Description:
 #  This script automates the partitioning and formatting of data disks
@@ -13,6 +13,7 @@
 #
 # How To Use :
 #  sudo ./datadisks.sh [mountpoint1]-[size1] [mountpoint2-size2] [mountpoint3-size3]
+#  sudo ./datadisks.sh /opt/disk1-512 /opt/disk2-64 /mnt/disk3-128
 #
 # Notes :
 # - You can have as many mount points as required
@@ -180,10 +181,10 @@ do
             echo "Next mount point appears to be ${MOUNT_DIR}"
             [ -d "/${MOUNT_DIR}" ] || mkdir -p "/${MOUNT_DIR}"
             read UUID FS_TYPE < <(blkid -u filesystem ${PARTITION}|awk -F "[= ]" '{print $3" "$5}'|tr -d "\"")
-            add_to_fstab "${UUID}" "/${MOUNT_DIR}"
-            echo "Mounting disk ${PARTITION} on /${MOUNT_DIR}"
+            add_to_fstab "${UUID}" "${MOUNT_DIR}"
+            echo "Mounting disk ${PARTITION} on ${MOUNT_DIR}"
             mount "/${MOUNT_DIR}"
-            
+
             MOUNT_POINTS=( "${MOUNT_POINTS[@]/$MOUNT_POINT}" )
             break
         fi
